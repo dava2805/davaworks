@@ -1,7 +1,7 @@
 ---
 title: "DaTune"
 description: "Less interference. More inspiration. A unified tuner, metronome, and looper."
-coverImage: "../../assets/projects/DaTuneTransparentBckgrnd.png"
+coverImage: "../../assets/projects/DaTune_logo_1024px_bw.001.png"
 span: 2
 featured: true
 category: "Apps"
