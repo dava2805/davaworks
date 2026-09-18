@@ -41,7 +41,7 @@ A pro-level pixel art suite in your pocket. PixelSync is a powerful, completely 
 <script>
   function initPixelSyncSlider() {
     const images = [
-      'Bild1.png', 'Bild2.png', 'Bild3.png', 'Bild4.png', 'Bild5.png', 
+      'Bild1.png', 'Bild2.png', 'Bild3.png', 'Bild5.png', 
       'Bild6.png', 'Bild7.png', 'Bild8.png', 'Bild20_engine.PNG', 'Bild21_widget.PNG'
     ];
     
