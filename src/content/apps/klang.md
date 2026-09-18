@@ -17,28 +17,28 @@ Klang is a revolutionary sound collector and beat maker for the modern creator. 
 
 Whether you are a lo-fi producer, a beatmaker, or a content creator looking to score your next reel, Klang turns your phone into an instantly playable, highly visual musical instrument.
 
-<div class="not-prose relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] mx-auto my-20 [perspective:1000px]">
+<div class="not-prose relative w-[260px] h-[260px] md:w-[450px] md:h-[450px] mx-auto my-20 [perspective:1000px]">
 <div id="klang-wheel" class="w-full h-full relative will-change-transform">
 <!-- Center aesthetic glow -->
 <div class="absolute inset-0 m-auto w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
 
 <!-- Image 1: Top Left -->
-<div class="klang-child absolute top-0 left-0 w-36 h-36 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
+<div class="klang-child absolute top-0 left-0 w-28 h-28 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
 <img src="/projects/klang/IMG_2995.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 2: Top Right -->
-<div class="klang-child absolute top-0 right-0 w-36 h-36 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
+<div class="klang-child absolute top-0 right-0 w-28 h-28 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
 <img src="/projects/klang/IMG_2997.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 3: Bottom Left -->
-<div class="klang-child absolute bottom-0 left-0 w-36 h-36 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
+<div class="klang-child absolute bottom-0 left-0 w-28 h-28 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
 <img src="/projects/klang/IMG_2998.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 4: Bottom Right -->
-<div class="klang-child absolute bottom-0 right-0 w-36 h-36 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
+<div class="klang-child absolute bottom-0 right-0 w-28 h-28 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
 <img src="/projects/klang/IMG_3002.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 </div>
