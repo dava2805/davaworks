@@ -17,7 +17,7 @@ Klang is a revolutionary sound collector and beat maker for the modern creator. 
 
 Whether you are a lo-fi producer, a beatmaker, or a content creator looking to score your next reel, Klang turns your phone into an instantly playable, highly visual musical instrument.
 
-<div class="not-prose relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] mx-auto my-20 perspective-1000">
+<div class="not-prose relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] mx-auto my-20 [perspective:1000px]">
   <div id="klang-wheel" class="w-full h-full relative will-change-transform">
     <!-- Center aesthetic glow -->
     <div class="absolute inset-0 m-auto w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
