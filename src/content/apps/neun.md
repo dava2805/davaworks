@@ -15,20 +15,20 @@ playStoreLink: "#"
 
 Build powerful combos, draft game-breaking relics, and survive escalating Antes to claim the #1 Daily Prestige. Welcome to Neun, a deep, grid-based puzzle game that blends tactical tile-matching with thrilling roguelike mechanics. Every swipe matters, and no two runs are ever the same.
 
+<div class="not-prose flex flex-row justify-center gap-4 my-12">
+  <img src="/projects/neun/Bild1.png" alt="Core Loop" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/neun/Bild2.png" alt="Tactical Combat" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/neun/Bild3.png" alt="Synthetic Strategist" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+</div>
+
 ## The Core Loop
 Swipe and select up to three tiles on the 3x3 grid to build poker-style hands—Rows, Columns, Diagonals, and L-Shapes. Balance your offensive strikes against Enemy tiles while strategically collecting Loot, Heals, and Shields. Hit the Target Score before you run out of Hands to defeat the Ante and level up!
-
-![The Core Loop](../../assets/projects/neun/Bild1.png)
 
 ## Deep Tactical Combat
 The board is alive and dangerous. Face off against standard enemies, ticking Bomb tiles, and Corrupted tiles that drain your Discards, Hands, and HP. Use the Live Prediction engine to calculate your exact damage, healing, and score output before you commit to a move.
 
-![Deep Tactical Combat](../../assets/projects/neun/Bild2.png)
-
 ## Synthetic Strategist
 Toggle a customizable bot to automate the grind. Fine-tune its playstyle and weight its perk selection, ensuring your mechanical proxy executes your specific strategy with surgical precision.
-
-![Synthetic Strategist](../../assets/projects/neun/Bild3.png)
 
 ## Game-Changing Relics & Synergies
 Surviving an Ante lets you draft powerful, run-defining perks:
