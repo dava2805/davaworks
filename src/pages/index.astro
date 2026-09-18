@@ -57,7 +57,7 @@ const allProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured
             </div>
           ) : null}
 
-          {project.data.category === 'Hardware' && (
+          {project.data.category === 'Hardware' && !project.data.coverImage && (
             <div class="mt-4">
               <ModelViewer />
             </div>

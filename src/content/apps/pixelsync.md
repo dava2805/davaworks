@@ -56,7 +56,7 @@ A pro-level pixel art suite in your pocket. PixelSync is a powerful, completely 
     images.forEach((img, index) => {
       const el = document.createElement('img');
       el.src = `/projects/pixelsync/slide_images/${img}`;
-      el.className = 'absolute w-[200px] h-[350px] md:w-[260px] md:h-[450px] object-cover rounded-2xl border-2 border-zinc-800 shadow-2xl cursor-pointer';
+      el.className = 'absolute w-[200px] h-[350px] md:w-[260px] md:h-[450px] object-contain rounded-2xl border-2 border-zinc-800 shadow-2xl cursor-pointer';
       el.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s';
       el.dataset.index = index;
       el.addEventListener('click', () => {
@@ -133,7 +133,7 @@ A pro-level pixel art suite in your pocket. PixelSync is a powerful, completely 
       interval = setInterval(() => {
         currentIndex = (currentIndex + 1) % images.length;
         updateSlider();
-      }, 4000);
+      }, 2500);
     }
     function resetInterval() {
       clearInterval(interval);
