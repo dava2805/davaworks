@@ -1,5 +1,6 @@
 ---
 title: "Terms of Service for Tabula"
+coverImage: "../../assets/projects/tabula_icon.002.png"
 ---
 
 # Terms of Service for Tabula

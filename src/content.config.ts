@@ -3,9 +3,10 @@ import { glob } from 'astro/loaders';
 
 const legalCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/legal" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     updatedAt: z.string().optional(),
+    coverImage: image().optional(),
   }),
 });
 

@@ -1,5 +1,6 @@
 ---
 title: "Privacy Policy for DaTune"
+coverImage: "../../assets/projects/DaTune_logo_1024px_bw.001.png"
 ---
 
 # Privacy Policy for DaTune

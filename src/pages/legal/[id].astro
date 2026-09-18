@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -16,6 +17,14 @@ const { Content } = await render(doc);
 
 <Layout title={doc.data.title}>
   <div class="max-w-3xl mx-auto py-12">
+    <div class="mb-12 border-b border-zinc-800 pb-8">
+      <div class="flex items-center gap-6 mb-4">
+        {doc.data.coverImage && (
+          <Image src={doc.data.coverImage} alt="App Logo" class="w-16 h-16 object-contain rounded-xl shadow-lg border border-zinc-800 bg-zinc-900/30" />
+        )}
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight">{doc.data.title}</h1>
+      </div>
+    </div>
     <article class="prose prose-invert prose-zinc max-w-none prose-headings:font-bold prose-a:text-white hover:prose-a:text-zinc-300">
       <Content />
     </article>

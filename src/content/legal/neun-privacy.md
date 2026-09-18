@@ -1,5 +1,6 @@
 ---
 title: "Privacy Policy for Neun"
+coverImage: "../../assets/projects/neun_icon.png"
 ---
 
 # Privacy Policy

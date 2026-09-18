@@ -1,5 +1,6 @@
 ---
 title: "Privacy Policy for PixelSync"
+coverImage: "../../assets/projects/pixelsync_app_icon_transparent.png"
 ---
 
 # Privacy Policy
