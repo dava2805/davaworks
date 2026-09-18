@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const hardware = await getCollection('hardware');
+  return hardware.map(item => ({
+    params: { id: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<Layout title={item.data.title}>
+  <div class="max-w-3xl mx-auto">
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">{item.data.title}</h1>
+      <p class="text-xl text-zinc-400">{item.data.description}</p>
+    </div>
+    
+    <article class="prose prose-invert prose-zinc max-w-none prose-headings:font-bold prose-a:text-white hover:prose-a:text-zinc-300">
+      <Content />
+    </article>
+  </div>
+</Layout>

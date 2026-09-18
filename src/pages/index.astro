@@ -1,10 +1,17 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BentoGrid from '../components/BentoGrid.astro';
 import BentoCard from '../components/BentoCard.astro';
 import FilterButtons from '../components/FilterButtons.astro';
 import AudioPlayer from '../components/AudioPlayer.astro';
 import ModelViewer from '../components/ModelViewer.astro';
+
+const apps = await getCollection('apps');
+const hardware = await getCollection('hardware');
+const music = await getCollection('music');
+
+const allProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured);
 ---
 
 <Layout title="Home">
@@ -18,51 +25,48 @@ import ModelViewer from '../components/ModelViewer.astro';
   <FilterButtons />
 
   <BentoGrid>
-    <!-- Featured App -->
-    <BentoCard 
-      title="Tabula" 
-      category="Apps" 
-      span={2} 
-      href="/apps/tabula"
-    >
-      <p slot="description" class="text-zinc-400 text-sm">A minimal workspace tailored for clarity, integrated seamlessly with Google Drive.</p>
-      <div class="w-full h-full bg-zinc-950/50 rounded-xl flex items-center justify-center border border-zinc-800/50">
-        <span class="text-4xl">📝</span>
-      </div>
-    </BentoCard>
+    {allProjects.map((project) => {
+      // Determine the URL based on the collection it came from
+      const collectionName = project.collection;
+      const href = `/${collectionName}/${project.id}`;
 
-    <!-- Hardware Project -->
-    <BentoCard 
-      title="Synth Module" 
-      category="Hardware" 
-      span={1}
-    >
-      <p slot="description" class="text-zinc-400 text-sm">Custom-built Eurorack oscillator module.</p>
-      <ModelViewer />
-    </BentoCard>
+      return (
+        <BentoCard 
+          title={project.data.title} 
+          category={project.data.category} 
+          span={project.data.span as 1 | 2 | 3} 
+          href={href}
+        >
+          <p slot="description" class="text-zinc-400 text-sm">{project.data.description}</p>
+          
+          {/* Dynamically render inner card visuals based on category */}
+          {project.data.category === 'Apps' && project.data.icon && (
+            <div class="w-full h-full bg-zinc-950/50 rounded-xl flex items-center justify-center border border-zinc-800/50 min-h-[120px]">
+              <span class="text-4xl">{project.data.icon}</span>
+            </div>
+          )}
 
-    <!-- Music Project -->
-    <BentoCard 
-      title="Night Drive EP" 
-      category="Music" 
-      span={1}
-    >
-      <p slot="description" class="text-zinc-400 text-sm">Latest electronic release.</p>
-      <AudioPlayer />
-    </BentoCard>
+          {project.data.category === 'Apps' && !project.data.icon && (
+            <div class="w-full h-full bg-black rounded-xl p-4 font-mono text-sm text-green-400 border border-zinc-800/50 flex flex-col justify-end min-h-[120px]">
+              <span>$ init {project.id}</span>
+              <span>> Success!</span>
+              <span class="animate-pulse">_</span>
+            </div>
+          )}
 
-    <!-- Another App -->
-    <BentoCard 
-      title="Nova CLI" 
-      category="Apps" 
-      span={2}
-    >
-      <p slot="description" class="text-zinc-400 text-sm">A blazing fast terminal utility written in Rust.</p>
-      <div class="w-full h-full bg-black rounded-xl p-4 font-mono text-sm text-green-400 border border-zinc-800/50 flex flex-col justify-end">
-        <span>$ nova init</span>
-        <span>> Success!</span>
-        <span class="animate-pulse">_</span>
-      </div>
-    </BentoCard>
+          {project.data.category === 'Hardware' && (
+            <div class="mt-4">
+              <ModelViewer />
+            </div>
+          )}
+
+          {project.data.category === 'Music' && (
+            <div class="mt-4">
+              <AudioPlayer />
+            </div>
+          )}
+        </BentoCard>
+      );
+    })}
   </BentoGrid>
 </Layout>
