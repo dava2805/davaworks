@@ -1,32 +1,32 @@
 ---
-title: "Impressum"
+title: "Legal Notice / Impressum"
 ---
 
-# Impressum
+# Legal Notice / Impressum
 
-## Angaben gemäß § 5 TMG
-
-David Culjak  
-Forststr. 102  
-70193 Stuttgart  
-Deutschland  
-
-## Kontakt
-
-Telefon: +49 176 84889388  
-E-Mail: mindthetrack25@gmail.com  
-
-## Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+## Information in accordance with § 5 TMG
 
 David Culjak  
 Forststr. 102  
 70193 Stuttgart  
+Germany  
 
-## EU-Streitschlichtung
+## Contact
 
-Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/.
-Unsere E-Mail-Adresse finden Sie oben im Impressum.
+Phone: +49 176 84889388  
+Email: mindthetrack25@gmail.com  
 
-## Verbraucherstreitbeilegung/Universalschlichtungsstelle
+## Responsible for Content according to § 55 Abs. 2 RStV
 
-Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+David Culjak  
+Forststr. 102  
+70193 Stuttgart  
+
+## EU Dispute Resolution
+
+The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr/.
+You can find our email address above in the legal notice.
+
+## Consumer Dispute Resolution
+
+We are neither willing nor obligated to participate in dispute resolution proceedings before a consumer arbitration board.

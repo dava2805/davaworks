@@ -1,49 +1,50 @@
 ---
-title: "Datenschutzerklärung"
+title: "Privacy Policy"
 ---
 
-# Datenschutzerklärung
+# Privacy Policy
 
-## 1. Datenschutz auf einen Blick
+## 1. Privacy at a Glance
 
-### Allgemeine Hinweise
-Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+### General Information
+The following notes provide a simple overview of what happens to your personal data when you visit this website. Personal data is any data with which you could be personally identified.
 
-### Datenerfassung auf dieser Website
+### Data Collection on this Website
 
-**Wer ist verantwortlich für die Datenerfassung auf dieser Website?**
-Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.
+**Who is responsible for data collection on this website?**
+Data processing on this website is carried out by the website operator. You can find their contact details in the "Responsible Party" section of this privacy policy.
 
-**Wie erfassen wir Ihre Daten?**
-Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie uns per E-Mail senden.
-Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.
+**How do we collect your data?**
+On the one hand, your data is collected when you provide it to us. This could be data you transmit via email, for example.
+Other data is collected automatically or after your consent when you visit the website through our IT systems. This is primarily technical data (e.g., internet browser, operating system, or time of the page request). This data is collected automatically as soon as you enter this website.
 
-**Wofür nutzen wir Ihre Daten?**
-Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten.
+**What do we use your data for?**
+Part of the data is collected to ensure the website is provided without errors.
 
 ## 2. Hosting
 
-### Externes Hosting (GitHub Pages / Cloudflare)
-Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Meta- und Kommunikationsdaten, Webseitenzugriffe und sonstige Daten handeln, die über eine Website generiert werden.
+### External Hosting (GitHub Pages / Cloudflare)
+This website is hosted by an external service provider (hoster). The personal data collected on this website is stored on the hoster's servers. This may include IP addresses, metadata and communications, web page access, and other data generated via a website.
 
-Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).
+The hoster is used for the purpose of fulfilling our contract with our potential and existing customers (Art. 6(1)(b) GDPR) and in the interest of a secure, fast, and efficient provision of our online services by a professional provider (Art. 6(1)(f) GDPR).
 
-## 3. Allgemeine Hinweise und Pflichtinformationen
+## 3. General Notes and Mandatory Information
 
-### Hinweis zur verantwortlichen Stelle
-Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+### Responsible Party
+The responsible party for data processing on this website is:
 
 David Culjak  
 Forststr. 102  
 70193 Stuttgart  
-Telefon: +49 176 84889388  
-E-Mail: mindthetrack25@gmail.com  
+Germany  
+Phone: +49 176 84889388  
+Email: mindthetrack25@gmail.com  
 
-### Speicherdauer
-Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben.
+### Storage Duration
+Unless a more specific storage period has been specified in this privacy policy, your personal data will remain with us until the purpose for processing the data no longer applies. If you assert a justified request for deletion or revoke your consent to data processing, your data will be deleted unless we have other legally permissible reasons for storing your personal data.
 
-### Beschwerderecht bei der zuständigen Aufsichtsbehörde
-Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde zu.
+### Right to Lodge a Complaint with the Supervisory Authority
+In the event of violations of the GDPR, data subjects have the right to lodge a complaint with a supervisory authority.
 
-### Auskunft, Löschung und Berichtigung
-Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit an uns wenden.
+### Information, Deletion, and Correction
+Within the framework of the applicable legal provisions, you have the right at any time to free information about your stored personal data, its origin and recipient, and the purpose of the data processing and, if applicable, a right to correct or delete this data. For this purpose, as well as for further questions on the subject of personal data, you can contact us at any time.

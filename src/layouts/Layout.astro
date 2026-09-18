@@ -20,11 +20,11 @@ const { title } = Astro.props;
     <title>{title} | Davaworks</title>
   </head>
   <body class="bg-zinc-950 text-zinc-300 font-sans antialiased min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white">
-    <header class="w-full max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
+    <header class="w-full max-w-5xl mx-auto px-6 py-6 md:py-8 flex flex-col md:flex-row justify-between items-center gap-4">
       <a href="/" class="text-2xl font-bold tracking-tighter text-white hover:text-zinc-300 transition-colors">davaworks.</a>
-      <div class="flex gap-6 text-sm font-medium text-zinc-400">
+      <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-sm font-medium text-zinc-400">
         <a href="/" class="hover:text-white transition-colors">Work</a>
-        <a href="/legal/impressum" class="hover:text-white transition-colors">Impressum</a>
+        <a href="/legal/impressum" class="hover:text-white transition-colors">Imprint</a>
         <a href="/legal/privacy" class="hover:text-white transition-colors">Privacy</a>
         <a href="mailto:mindthetrack25@gmail.com" class="hover:text-white transition-colors">Contact</a>
       </div>
