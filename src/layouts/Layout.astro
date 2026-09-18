@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Davaworks - Portfolio of Code, Electronics, and Music" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>{title} | Davaworks</title>
+  </head>
+  <body class="bg-zinc-950 text-zinc-300 font-sans antialiased min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white">
+    <header class="w-full max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold tracking-tighter text-white hover:text-zinc-300 transition-colors">davaworks.</a>
+      <nav class="flex gap-4 text-sm font-medium">
+        <a href="/" class="hover:text-white transition-colors">Work</a>
+        <a href="/apps/tabula" class="hover:text-white transition-colors">Tabula</a>
+      </nav>
+    </header>
+    
+    <main class="flex-grow w-full max-w-5xl mx-auto px-6 py-8">
+      <slot />
+    </main>
+
+    <footer class="w-full border-t border-zinc-800/50 mt-auto">
+      <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
+        <p>&copy; {new Date().getFullYear()} Davaworks. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="mailto:mindthetrack25@gmail.com" class="hover:text-zinc-300 transition-colors">Contact</a>
+          <a href="/privacy" class="hover:text-zinc-300 transition-colors">Privacy</a>
+          <a href="/terms" class="hover:text-zinc-300 transition-colors">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    color-scheme: dark;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: white;
+  }
+
+  code {
+    font-family: 'Roboto Mono', monospace;
+  }
+</style>

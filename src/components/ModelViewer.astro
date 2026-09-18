@@ -1,0 +1,41 @@
+---
+// Assuming the user will supply the 3D model later. 
+// We include the Google model-viewer script if it's not already in the page.
+interface Props {
+  src?: string;
+  poster?: string;
+  alt?: string;
+}
+
+const { 
+  src = "shared-assets/models/Astronaut.glb", 
+  poster = "", 
+  alt = "A 3D model" 
+} = Astro.props;
+---
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+<div class="w-full h-full min-h-[200px] rounded-xl overflow-hidden bg-zinc-950/50 flex items-center justify-center border border-zinc-800/50">
+  <model-viewer
+    src={src}
+    poster={poster}
+    alt={alt}
+    auto-rotate
+    camera-controls
+    class="w-full h-full"
+    style="--poster-color: transparent;"
+  >
+    <div slot="poster" class="absolute inset-0 flex items-center justify-center text-zinc-600 font-mono text-xs">
+      Loading 3D Model...
+    </div>
+  </model-viewer>
+</div>
+
+<style>
+  model-viewer {
+    width: 100%;
+    height: 100%;
+    --poster-color: transparent;
+  }
+</style>

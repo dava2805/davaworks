@@ -1,0 +1,30 @@
+---
+---
+<div class="w-full bg-zinc-950/50 rounded-xl p-4 border border-zinc-800/50 flex flex-col gap-3">
+  <div class="flex items-center justify-between">
+    <div class="flex flex-col">
+      <span class="text-sm font-semibold text-zinc-200">Industrial Beat 01</span>
+      <span class="text-xs text-zinc-500">Davaworks</span>
+    </div>
+    <div class="text-xs font-mono text-zinc-500">01:24</div>
+  </div>
+  
+  <!-- Waveform Mockup -->
+  <div class="h-8 w-full flex items-end gap-1 opacity-70">
+    {Array.from({ length: 40 }).map(() => (
+      <div class="w-full bg-zinc-600 rounded-t-sm" style={`height: ${Math.max(10, Math.random() * 100)}%`}></div>
+    ))}
+  </div>
+
+  <div class="flex items-center justify-center gap-4 mt-2 text-zinc-400">
+    <button class="hover:text-white transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" x2="5" y1="19" y2="5"/></svg>
+    </button>
+    <button class="h-10 w-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <button class="hover:text-white transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" x2="19" y1="5" y2="19"/></svg>
+    </button>
+  </div>
+</div>

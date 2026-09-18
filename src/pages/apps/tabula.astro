@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Tabula">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header Section -->
+    <div class="flex flex-col md:flex-row gap-8 items-start mb-16">
+      <div class="w-32 h-32 bg-zinc-900 border border-zinc-800 rounded-3xl flex items-center justify-center text-5xl shadow-xl shadow-zinc-900/50 flex-shrink-0">
+        📝
+      </div>
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Tabula</h1>
+        <p class="text-xl text-zinc-400 mb-6 max-w-2xl">
+          A minimalist workspace designed for absolute clarity. Capture thoughts, organize projects, and stay focused.
+        </p>
+        <div class="flex gap-4">
+          <a href="#" class="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-zinc-200 transition-colors">
+            Get Started
+          </a>
+          <a href="mailto:mindthetrack25@gmail.com" class="px-6 py-3 bg-zinc-900 text-white font-semibold rounded-full border border-zinc-800 hover:border-zinc-600 transition-colors">
+            Developer Support
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+        <span class="w-8 h-[2px] bg-white inline-block"></span>
+        Core Features
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800/50">
+          <h3 class="text-lg font-semibold mb-2">Distraction-Free</h3>
+          <p class="text-zinc-400 text-sm">An interface that gets out of your way so you can focus on what matters.</p>
+        </div>
+        <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800/50">
+          <h3 class="text-lg font-semibold mb-2">Lightning Fast</h3>
+          <p class="text-zinc-400 text-sm">Optimized for speed. No loading spinners, no waiting.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Google Drive Integration Section -->
+    <section class="mb-16 bg-zinc-900 border border-zinc-800 rounded-3xl p-8 md:p-12 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+      
+      <h2 class="text-2xl font-bold mb-4">Seamless Google Drive Integration</h2>
+      <p class="text-zinc-400 mb-6 max-w-2xl">
+        Tabula securely connects with your Google Drive to sync your workspaces. Your data remains yours, stored directly in your personal cloud. We never see, sell, or rent your private files.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 text-sm font-medium">
+        <a href="/privacy" class="flex items-center gap-2 text-white hover:text-blue-400 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Privacy Policy
+        </a>
+        <a href="/terms" class="flex items-center gap-2 text-white hover:text-blue-400 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Terms of Service
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>

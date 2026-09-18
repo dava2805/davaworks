@@ -1,0 +1,68 @@
+---
+const categories = ['All', 'Apps', 'Hardware', 'Music'];
+---
+
+<div class="flex flex-wrap gap-2 mb-8">
+  {categories.map(cat => (
+    <button
+      class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium border transition-colors bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600"
+      data-filter={cat}
+    >
+      {cat}
+    </button>
+  ))}
+</div>
+
+<script>
+  function setupFilters() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.bento-item');
+
+    // Initially active the 'All' button visually
+    const allBtn = Array.from(buttons).find(b => b.getAttribute('data-filter') === 'All');
+    if(allBtn) {
+      allBtn.classList.add('bg-white', 'text-black', 'border-white');
+      allBtn.classList.remove('bg-zinc-900', 'text-zinc-400', 'border-zinc-800');
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset all buttons
+        buttons.forEach(b => {
+          b.classList.remove('bg-white', 'text-black', 'border-white');
+          b.classList.add('bg-zinc-900', 'text-zinc-400', 'border-zinc-800');
+        });
+
+        // Activate clicked button
+        btn.classList.add('bg-white', 'text-black', 'border-white');
+        btn.classList.remove('bg-zinc-900', 'text-zinc-400', 'border-zinc-800');
+
+        const filter = btn.getAttribute('data-filter');
+
+        items.forEach(item => {
+          if (filter === 'All') {
+            (item as HTMLElement).style.display = '';
+            // tiny timeout to trigger fade in
+            setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
+          } else {
+            if (item.classList.contains(filter as string)) {
+              (item as HTMLElement).style.display = '';
+              setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
+            } else {
+              (item as HTMLElement).style.opacity = '0';
+              setTimeout(() => { (item as HTMLElement).style.display = 'none'; }, 300); // match transition duration
+            }
+          }
+        });
+      });
+    });
+  }
+
+  // Run on page load and astro page navigations
+  document.addEventListener('astro:page-load', setupFilters);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFilters);
+  } else {
+    setupFilters();
+  }
+</script>

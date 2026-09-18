@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BentoGrid from '../components/BentoGrid.astro';
+import BentoCard from '../components/BentoCard.astro';
+import FilterButtons from '../components/FilterButtons.astro';
+import AudioPlayer from '../components/AudioPlayer.astro';
+import ModelViewer from '../components/ModelViewer.astro';
+---
+
+<Layout title="Home">
+  <div class="mb-12">
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">Crafting digital and physical experiences.</h1>
+    <p class="text-lg text-zinc-400 max-w-2xl">
+      I'm a developer and creator exploring the intersection of software, hardware, and sound. Welcome to my portfolio.
+    </p>
+  </div>
+
+  <FilterButtons />
+
+  <BentoGrid>
+    <!-- Featured App -->
+    <BentoCard 
+      title="Tabula" 
+      category="Apps" 
+      span={2} 
+      href="/apps/tabula"
+    >
+      <p slot="description" class="text-zinc-400 text-sm">A minimal workspace tailored for clarity, integrated seamlessly with Google Drive.</p>
+      <div class="w-full h-full bg-zinc-950/50 rounded-xl flex items-center justify-center border border-zinc-800/50">
+        <span class="text-4xl">📝</span>
+      </div>
+    </BentoCard>
+
+    <!-- Hardware Project -->
+    <BentoCard 
+      title="Synth Module" 
+      category="Hardware" 
+      span={1}
+    >
+      <p slot="description" class="text-zinc-400 text-sm">Custom-built Eurorack oscillator module.</p>
+      <ModelViewer />
+    </BentoCard>
+
+    <!-- Music Project -->
+    <BentoCard 
+      title="Night Drive EP" 
+      category="Music" 
+      span={1}
+    >
+      <p slot="description" class="text-zinc-400 text-sm">Latest electronic release.</p>
+      <AudioPlayer />
+    </BentoCard>
+
+    <!-- Another App -->
+    <BentoCard 
+      title="Nova CLI" 
+      category="Apps" 
+      span={2}
+    >
+      <p slot="description" class="text-zinc-400 text-sm">A blazing fast terminal utility written in Rust.</p>
+      <div class="w-full h-full bg-black rounded-xl p-4 font-mono text-sm text-green-400 border border-zinc-800/50 flex flex-col justify-end">
+        <span>$ nova init</span>
+        <span>> Success!</span>
+        <span class="animate-pulse">_</span>
+      </div>
+    </BentoCard>
+  </BentoGrid>
+</Layout>
