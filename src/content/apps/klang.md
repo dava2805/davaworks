@@ -17,17 +17,66 @@ Klang is a revolutionary sound collector and beat maker for the modern creator. 
 
 Whether you are a lo-fi producer, a beatmaker, or a content creator looking to score your next reel, Klang turns your phone into an instantly playable, highly visual musical instrument.
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8 [&>p]:m-0 [&>p>img]:rounded-xl [&>p>img]:shadow-lg [&>p>img]:border [&>p>img]:border-zinc-800">
-
-![Klang Screenshot 1](../../assets/projects/klang/IMG_2995.PNG)
-
-![Klang Screenshot 2](../../assets/projects/klang/IMG_2997.PNG)
-
-![Klang Screenshot 3](../../assets/projects/klang/IMG_2998.PNG)
-
-![Klang Screenshot 4](../../assets/projects/klang/IMG_3002.PNG)
-
+<div class="not-prose relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] mx-auto my-20 perspective-1000">
+  <div id="klang-wheel" class="w-full h-full relative will-change-transform">
+    <!-- Center aesthetic glow -->
+    <div class="absolute inset-0 m-auto w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+    
+    <!-- Image 1: Top Left -->
+    <img src="/projects/klang/IMG_2995.PNG" class="absolute top-0 left-0 w-36 h-36 md:w-52 md:h-52 object-cover rounded-3xl shadow-2xl border-4 border-zinc-900/80 transform -rotate-12 hover:scale-110 hover:z-10 transition-all duration-300" />
+    
+    <!-- Image 2: Top Right -->
+    <img src="/projects/klang/IMG_2997.PNG" class="absolute top-0 right-0 w-36 h-36 md:w-52 md:h-52 object-cover rounded-3xl shadow-2xl border-4 border-zinc-900/80 transform rotate-12 hover:scale-110 hover:z-10 transition-all duration-300" />
+    
+    <!-- Image 3: Bottom Left -->
+    <img src="/projects/klang/IMG_2998.PNG" class="absolute bottom-0 left-0 w-36 h-36 md:w-52 md:h-52 object-cover rounded-3xl shadow-2xl border-4 border-zinc-900/80 transform -rotate-12 hover:scale-110 hover:z-10 transition-all duration-300" />
+    
+    <!-- Image 4: Bottom Right -->
+    <img src="/projects/klang/IMG_3002.PNG" class="absolute bottom-0 right-0 w-36 h-36 md:w-52 md:h-52 object-cover rounded-3xl shadow-2xl border-4 border-zinc-900/80 transform rotate-12 hover:scale-110 hover:z-10 transition-all duration-300" />
+  </div>
 </div>
+
+<script>
+  function initKlangWheel() {
+    const wheel = document.getElementById('klang-wheel');
+    if (!wheel) return;
+    
+    let currentRotation = 0;
+    let targetRotation = 0;
+    let ticking = false;
+
+    function update() {
+      // Lerp for buttery smooth dampening
+      currentRotation += (targetRotation - currentRotation) * 0.08;
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
+      
+      if (Math.abs(targetRotation - currentRotation) > 0.01) {
+        requestAnimationFrame(update);
+      } else {
+        ticking = false;
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      // Multiply by a small factor to make it subtle
+      targetRotation = window.scrollY * 0.15;
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // Hook into Astro's lifecycle
+  document.addEventListener('astro:page-load', initKlangWheel);
+  
+  // Fallback for direct loads
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initKlangWheel();
+  } else {
+    document.addEventListener('DOMContentLoaded', initKlangWheel);
+  }
+</script>
 
 ## Record Your World (The Viewfinder)
 Don't just use stock sounds—sample your life. Open the camera viewfinder to record the world around you. Klang instantly trims and maps your recorded audio (and video!) directly to a sequencer pad. A slamming door becomes your kick drum; a passing car becomes your synth riser.
