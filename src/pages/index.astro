@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import BentoGrid from '../components/BentoGrid.astro';
 import BentoCard from '../components/BentoCard.astro';
 import FilterButtons from '../components/FilterButtons.astro';
@@ -40,19 +41,21 @@ const allProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured
           <p slot="description" class="text-zinc-400 text-sm">{project.data.description}</p>
           
           {/* Dynamically render inner card visuals based on category */}
-          {project.data.category === 'Apps' && project.data.icon && (
+          {project.data.coverImage ? (
+            <div class="w-full h-full min-h-[140px] rounded-xl overflow-hidden bg-zinc-950/50 border border-zinc-800/50 flex items-center justify-center p-6">
+              <Image src={project.data.coverImage} alt={project.data.title} class="max-w-[70%] max-h-[140px] object-contain drop-shadow-xl" />
+            </div>
+          ) : project.data.category === 'Apps' && project.data.icon ? (
             <div class="w-full h-full bg-zinc-950/50 rounded-xl flex items-center justify-center border border-zinc-800/50 min-h-[120px]">
               <span class="text-4xl">{project.data.icon}</span>
             </div>
-          )}
-
-          {project.data.category === 'Apps' && !project.data.icon && (
+          ) : project.data.category === 'Apps' && !project.data.icon ? (
             <div class="w-full h-full bg-black rounded-xl p-4 font-mono text-sm text-green-400 border border-zinc-800/50 flex flex-col justify-end min-h-[120px]">
               <span>$ init {project.id}</span>
               <span>> Success!</span>
               <span class="animate-pulse">_</span>
             </div>
-          )}
+          ) : null}
 
           {project.data.category === 'Hardware' && (
             <div class="mt-4">
