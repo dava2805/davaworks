@@ -13,6 +13,8 @@ playStoreLink: "#"
 
 **Pro pixel art creation & animation.**
 
+![PixelSync Banner](../../assets/projects/pixelsync/banner.png)
+
 Sync directly to Unity via Wi-Fi, extract real-world palettes, or draw with friends! 100% free, zero ads.
 
 A pro-level pixel art suite in your pocket. PixelSync is a powerful, completely free editor built for indie game developers, digital artists, and retro enthusiasts. Whether you are creating static character sprites, crafting complex animations, or teaming up with a friend to draw in real-time, you get desktop-class workflow tools on the go.

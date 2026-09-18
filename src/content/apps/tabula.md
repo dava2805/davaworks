@@ -18,6 +18,8 @@ Most to-do lists are digital graveyards for things you will never do. Tabula is 
 ## The Philosophy of the Blank Slate
 To-do lists breed hoarding and guilt. Tabula is built on the concept of Tabula Rasa—the blank slate. We restrict your focus, sync seamlessly with your real-world calendar, and automatically burn whatever you don't finish. Every single day is a fresh start.
 
+![Tabula Always on Top Mac App](../../assets/projects/tabula/mac%20always%20on%20top.png)
+
 ## Core Features
 - **The Strict Slate:** You are strictly limited to 5 tasks a day. Swipe right to execute. Swipe left to undo. Limit your focus and do the work.
 - **The Daily Wipe:** Every 24 hours at your chosen reset time, your slate is wiped clean. No rollovers. No guilt-tripping notifications. You either execute, or you let it burn.
