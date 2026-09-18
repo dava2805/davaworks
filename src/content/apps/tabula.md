@@ -5,6 +5,8 @@ coverImage: "../../assets/projects/tabula_icon.002.png"
 span: 2
 featured: true
 category: "Apps"
+appStoreLink: "#"
+playStoreLink: "#"
 ---
 
 # Tabula

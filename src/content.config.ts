@@ -18,6 +18,8 @@ const projectSchema = ({ image }: any) => z.object({
   category: z.enum(['Apps', 'Hardware', 'Music']),
   // App specific (e.g. icon for Bento Card)
   icon: z.string().optional(),
+  appStoreLink: z.string().optional(),
+  playStoreLink: z.string().optional(),
 });
 
 const appsCollection = defineCollection({

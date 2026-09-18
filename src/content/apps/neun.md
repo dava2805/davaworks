@@ -5,6 +5,8 @@ coverImage: "../../assets/projects/neun_icon.png"
 span: 1
 featured: true
 category: "Apps"
+appStoreLink: "#"
+playStoreLink: "#"
 ---
 
 # Neun

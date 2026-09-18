@@ -5,6 +5,8 @@ coverImage: "../../assets/projects/klang/logo_klang.001.png"
 span: 2
 featured: true
 category: "Apps"
+appStoreLink: "#"
+playStoreLink: "#"
 ---
 
 # KLANG: The Audiovisual Pocket Studio

@@ -5,6 +5,8 @@ coverImage: "../../assets/projects/DaTuneTransparentBckgrnd.png"
 span: 2
 featured: true
 category: "Apps"
+appStoreLink: "#"
+playStoreLink: "#"
 ---
 
 # DaTune

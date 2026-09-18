@@ -5,6 +5,8 @@ coverImage: "../../assets/projects/pixelsync_app_icon_transparent.png"
 span: 1
 featured: true
 category: "Apps"
+appStoreLink: "#"
+playStoreLink: "#"
 ---
 
 # PixelSync
