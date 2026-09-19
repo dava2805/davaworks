@@ -13,220 +13,222 @@ playStoreLink: "#"
 
 **A professional-grade pixel art and animation suite in your pocket. Zero ads. Zero costs. No accounts required.**
 
-<div class="w-full max-w-3xl mx-auto my-8 relative rounded-2xl overflow-hidden shadow-2xl bg-zinc-900 border border-white/10" style="height: 300px;">
-  <canvas id="interactive-banner" class="absolute inset-0 w-full h-full cursor-crosshair touch-none"></canvas>
-  <div id="banner-ui" class="absolute top-4 left-4 right-4 flex justify-between pointer-events-none">
-    <div class="text-white/70 font-mono text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-md">Draw a bridge to save him!</div>
-    <button id="banner-reset" class="pointer-events-auto text-white/70 hover:text-white bg-black/50 hover:bg-black/80 px-3 py-1 rounded-full backdrop-blur-md transition-all font-mono text-sm border border-white/10">Reset</button>
+<div class="not-prose w-full max-w-4xl mx-auto my-12 flex flex-col md:flex-row gap-4 h-auto md:h-[350px]">
+  <!-- Left Side: Mobile App Editor -->
+  <div class="flex-1 bg-zinc-900 border border-zinc-700 rounded-2xl flex flex-col p-4 shadow-2xl relative min-h-[300px]">
+    <div class="absolute top-3 left-4 flex items-center gap-2">
+      <div class="w-3 h-3 rounded-full bg-red-500"></div>
+      <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+      <div class="w-3 h-3 rounded-full bg-green-500"></div>
+      <span class="text-xs font-mono text-zinc-500 ml-2">PixelSync</span>
+    </div>
+    
+    <div class="flex-1 flex flex-col items-center justify-center mt-6">
+      <canvas id="px-editor" width="160" height="160" class="bg-zinc-800 border border-zinc-600 cursor-crosshair touch-none shadow-inner" style="image-rendering: pixelated; width: 200px; height: 200px;"></canvas>
+      
+      <div class="flex gap-2 mt-6" id="px-palette">
+        <!-- JS will populate colors -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: Engine Sync -->
+  <div class="flex-1 bg-[#1e1e1e] border border-zinc-700 rounded-2xl flex flex-col overflow-hidden shadow-2xl min-h-[300px]">
+    <!-- Engine Header -->
+    <div class="h-10 bg-[#323233] flex items-center px-4 border-b border-[#1e1e1e]">
+      <span class="text-xs font-mono text-zinc-400">Unity - Scene</span>
+      <div class="ml-auto flex items-center gap-2">
+        <span class="text-[10px] font-mono text-green-400">LIVE SYNC</span>
+        <div id="sync-indicator" class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e] transition-all duration-150"></div>
+      </div>
+    </div>
+    
+    <!-- Engine Body -->
+    <div class="flex-1 flex">
+      <!-- Hierarchy -->
+      <div class="hidden md:flex w-24 border-r border-[#323233] p-3 flex-col gap-2">
+        <div class="h-2 bg-zinc-600 rounded w-full"></div>
+        <div class="h-2 bg-zinc-700 rounded w-5/6 ml-2"></div>
+        <div class="h-2 bg-zinc-700 rounded w-4/6 ml-2"></div>
+        <div class="h-2 bg-zinc-700 rounded w-full mt-2"></div>
+      </div>
+      <!-- Scene View -->
+      <div class="flex-1 bg-[#252526] relative overflow-hidden flex items-center justify-center" style="background-image: radial-gradient(#3f3f46 1px, transparent 1px); background-size: 16px 16px;">
+        <canvas id="px-engine" width="160" height="160" class="shadow-2xl" style="image-rendering: pixelated; width: 160px; height: 160px;"></canvas>
+        <!-- Mock Inspector overlay -->
+        <div class="absolute right-0 top-0 bottom-0 w-24 bg-[#252526] border-l border-[#323233] p-2 hidden md:flex flex-col gap-2 opacity-80">
+          <div class="text-[8px] font-mono text-zinc-500 mb-1">Transform</div>
+          <div class="h-1.5 bg-zinc-700 rounded w-full"></div>
+          <div class="h-1.5 bg-zinc-700 rounded w-full"></div>
+          <div class="text-[8px] font-mono text-zinc-500 mt-2 mb-1">Sprite</div>
+          <div class="h-1.5 bg-zinc-700 rounded w-full"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <script is:inline>
-  function initInteractiveBanner() {
-    const canvas = document.getElementById('interactive-banner');
-    if (!canvas || canvas.dataset.initialized) return;
-    canvas.dataset.initialized = 'true';
+  function initLiveSyncBanner() {
+    const editorCanvas = document.getElementById('px-editor');
+    const engineCanvas = document.getElementById('px-engine');
+    const palette = document.getElementById('px-palette');
+    const indicator = document.getElementById('sync-indicator');
     
-    const ctx = canvas.getContext('2d');
+    if (!editorCanvas || editorCanvas.dataset.initialized) return;
+    editorCanvas.dataset.initialized = 'true';
     
-    function resize() {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+    const eCtx = editorCanvas.getContext('2d');
+    const enCtx = engineCanvas.getContext('2d');
     
-    const state = {
-      player: { x: -50, y: 150, width: 20, height: 20, velocityY: 0, velocityX: 2.5, isJumping: false },
-      gravity: 0.5,
-      groundY: 200,
-      gap: { x: canvas.width / 2 - 60, width: 120 },
-      drawnPixels: [],
-      isDrawing: false,
-      lastDrawPos: null,
-      gameOver: false,
-      success: false
-    };
-
-    function updateGap() {
-        state.gap.x = canvas.width / 2 - 60;
-    }
-    window.addEventListener('resize', updateGap);
-    updateGap();
+    const GRID = 16;
+    const PIXEL_SIZE = editorCanvas.width / GRID;
     
-    function getMousePos(e) {
-      const rect = canvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: clientX - rect.left,
-        y: clientY - rect.top
-      };
-    }
+    // Default palette
+    const colors = ['#ef4444', '#3b82f6', '#10b981', '#eab308', '#ffffff', '#18181b', 'clear'];
+    let currentColor = colors[0];
+    let pixels = new Array(GRID * GRID).fill(null);
+    let isDrawing = false;
     
-    function startDrawing(e) {
-      e.preventDefault();
-      state.isDrawing = true;
-      state.lastDrawPos = getMousePos(e);
-      addPixel(state.lastDrawPos);
-    }
-    
-    function draw(e) {
-      if (!state.isDrawing) return;
-      e.preventDefault();
-      const pos = getMousePos(e);
-      
-      if (state.lastDrawPos) {
-        const dx = pos.x - state.lastDrawPos.x;
-        const dy = pos.y - state.lastDrawPos.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const steps = Math.max(Math.floor(distance / 5), 1);
-        
-        for (let i = 0; i <= steps; i++) {
-          const x = state.lastDrawPos.x + (dx * i) / steps;
-          const y = state.lastDrawPos.y + (dy * i) / steps;
-          addPixel({x, y});
-        }
-      }
-      
-      state.lastDrawPos = pos;
-    }
-    
-    function stopDrawing() {
-      state.isDrawing = false;
-      state.lastDrawPos = null;
-    }
-    
-    function addPixel(pos) {
-      const gridSize = 10;
-      const gridX = Math.floor(pos.x / gridSize) * gridSize;
-      const gridY = Math.floor(pos.y / gridSize) * gridSize;
-      
-      const exists = state.drawnPixels.some(p => p.x === gridX && p.y === gridY);
-      if (!exists) {
-        state.drawnPixels.push({x: gridX, y: gridY, size: gridSize});
-      }
-    }
-    
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mousemove', draw);
-    window.addEventListener('mouseup', stopDrawing);
-    
-    canvas.addEventListener('touchstart', startDrawing, {passive: false});
-    canvas.addEventListener('touchmove', draw, {passive: false});
-    window.addEventListener('touchend', stopDrawing);
-    
-    document.getElementById('banner-reset').addEventListener('click', () => {
-      state.player = { x: -50, y: 150, width: 20, height: 20, velocityY: 0, velocityX: 2.5, isJumping: false };
-      state.drawnPixels = [];
-      state.gameOver = false;
-      state.success = false;
+    // Default sprite (a small sword or cursor)
+    const defaultSprite = [
+       {x: 7, y: 3, c: '#ffffff'}, {x: 8, y: 3, c: '#ffffff'},
+       {x: 6, y: 4, c: '#ffffff'}, {x: 9, y: 4, c: '#ffffff'},
+       {x: 6, y: 5, c: '#ffffff'}, {x: 7, y: 5, c: '#ef4444'}, {x: 8, y: 5, c: '#ef4444'}, {x: 9, y: 5, c: '#ffffff'},
+       {x: 6, y: 6, c: '#ffffff'}, {x: 7, y: 6, c: '#ef4444'}, {x: 8, y: 6, c: '#ef4444'}, {x: 9, y: 6, c: '#ffffff'},
+       {x: 6, y: 7, c: '#ffffff'}, {x: 7, y: 7, c: '#ef4444'}, {x: 8, y: 7, c: '#ef4444'}, {x: 9, y: 7, c: '#ffffff'},
+       {x: 6, y: 8, c: '#ffffff'}, {x: 7, y: 8, c: '#ef4444'}, {x: 8, y: 8, c: '#ef4444'}, {x: 9, y: 8, c: '#ffffff'},
+       {x: 7, y: 9, c: '#ffffff'}, {x: 8, y: 9, c: '#ffffff'},
+    ];
+    defaultSprite.forEach(p => {
+       pixels[p.y * GRID + p.x] = p.c;
     });
     
-    function update() {
-      if (state.gameOver || state.success) {
-        if (state.player.y > canvas.height + 50) {
-            if (!state.resetTimer) {
-                state.resetTimer = setTimeout(() => {
-                    document.getElementById('banner-reset').click();
-                    state.resetTimer = null;
-                }, 1000);
-            }
+    function renderEditor() {
+      eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
+      for (let i = 0; i < pixels.length; i++) {
+        const x = (i % GRID) * PIXEL_SIZE;
+        const y = Math.floor(i / GRID) * PIXEL_SIZE;
+        if (pixels[i]) {
+          eCtx.fillStyle = pixels[i];
+          eCtx.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+        } else {
+          // grid lines
+          eCtx.strokeStyle = '#27272a';
+          eCtx.lineWidth = 1;
+          eCtx.strokeRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
         }
+      }
+    }
+    
+    function renderEngine() {
+      enCtx.clearRect(0, 0, engineCanvas.width, engineCanvas.height);
+      for (let i = 0; i < pixels.length; i++) {
+        if (pixels[i]) {
+          const x = (i % GRID) * PIXEL_SIZE;
+          const y = Math.floor(i / GRID) * PIXEL_SIZE;
+          enCtx.fillStyle = pixels[i];
+          enCtx.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+        }
+      }
+    }
+    
+    function flashIndicator() {
+      indicator.classList.remove('bg-green-500', 'shadow-[0_0_8px_#22c55e]');
+      indicator.classList.add('bg-white', 'shadow-[0_0_12px_#ffffff]', 'scale-150');
+      setTimeout(() => {
+        indicator.classList.remove('bg-white', 'shadow-[0_0_12px_#ffffff]', 'scale-150');
+        indicator.classList.add('bg-green-500', 'shadow-[0_0_8px_#22c55e]');
+      }, 150);
+    }
+    
+    function paint(e) {
+      if (!isDrawing) return;
+      const rect = editorCanvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      
+      const scaleX = editorCanvas.width / rect.width;
+      const scaleY = editorCanvas.height / rect.height;
+      
+      const x = (clientX - rect.left) * scaleX;
+      const y = (clientY - rect.top) * scaleY;
+      
+      const gridX = Math.floor(x / PIXEL_SIZE);
+      const gridY = Math.floor(y / PIXEL_SIZE);
+      
+      if (gridX >= 0 && gridX < GRID && gridY >= 0 && gridY < GRID) {
+        const index = gridY * GRID + gridX;
+        const colorToSet = currentColor === 'clear' ? null : currentColor;
+        
+        if (pixels[index] !== colorToSet) {
+          pixels[index] = colorToSet;
+          renderEditor();
+          renderEngine();
+          flashIndicator();
+        }
+      }
+    }
+    
+    // Create Palette
+    colors.forEach(color => {
+      const btn = document.createElement('button');
+      btn.className = 'w-6 h-6 md:w-8 md:h-8 rounded-full border-2 transition-transform hover:scale-110 shadow-md';
+      if (color === 'clear') {
+        btn.style.background = 'repeating-linear-gradient(45deg, #3f3f46, #3f3f46 4px, #27272a 4px, #27272a 8px)';
+        btn.title = 'Eraser';
       } else {
-        state.player.velocityY += state.gravity;
-        state.player.y += state.player.velocityY;
-        state.player.x += state.player.velocityX;
-        
-        const onGround = state.player.y + state.player.height >= state.groundY;
-        const inGap = state.player.x + state.player.width > state.gap.x && state.player.x < state.gap.x + state.gap.width;
-        
-        if (onGround && !inGap) {
-          state.player.y = state.groundY - state.player.height;
-          state.player.velocityY = 0;
-        }
-        
-        for (const pixel of state.drawnPixels) {
-          if (
-            state.player.x < pixel.x + pixel.size &&
-            state.player.x + state.player.width > pixel.x &&
-            state.player.y + state.player.height >= pixel.y &&
-            state.player.y < pixel.y + pixel.size &&
-            state.player.velocityY >= 0
-          ) {
-            state.player.y = pixel.y - state.player.height;
-            state.player.velocityY = 0;
-            break;
-          }
-        }
-        
-        if (state.player.y > canvas.height) {
-          state.gameOver = true;
-        }
-        
-        if (state.player.x > canvas.width) {
-          state.success = true;
-          if (!state.resetTimer) {
-              state.resetTimer = setTimeout(() => {
-                  document.getElementById('banner-reset').click();
-                  state.resetTimer = null;
-              }, 2000);
-          }
-        }
-      }
-    }
-    
-    function render() {
-      ctx.fillStyle = '#18181b';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      ctx.fillStyle = '#3f3f46';
-      ctx.fillRect(0, state.groundY, state.gap.x, canvas.height - state.groundY);
-      ctx.fillRect(state.gap.x + state.gap.width, state.groundY, canvas.width - (state.gap.x + state.gap.width), canvas.height - state.groundY);
-      
-      ctx.fillStyle = '#10b981';
-      for (const pixel of state.drawnPixels) {
-        ctx.fillRect(pixel.x, pixel.y, pixel.size, pixel.size);
-        ctx.fillStyle = '#047857';
-        ctx.fillRect(pixel.x, pixel.y + pixel.size - 2, pixel.size, 2);
-        ctx.fillStyle = '#10b981';
+        btn.style.backgroundColor = color;
       }
       
-      ctx.fillStyle = '#ef4444';
-      ctx.fillRect(state.player.x, state.player.y, state.player.width, state.player.height);
+      btn.style.borderColor = color === currentColor ? 'white' : 'transparent';
       
-      ctx.fillStyle = 'white';
-      ctx.fillRect(state.player.x + 12, state.player.y + 4, 4, 4);
-      ctx.fillStyle = 'black';
-      ctx.fillRect(state.player.x + 14, state.player.y + 4, 2, 2);
-      
-      if (state.gameOver) {
-        ctx.fillStyle = 'white';
-        ctx.font = '24px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('Oops! Try again.', canvas.width/2, canvas.height/2 - 20);
-      } else if (state.success) {
-        ctx.fillStyle = 'white';
-        ctx.font = '24px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('Great job!', canvas.width/2, canvas.height/2 - 20);
-      }
-    }
+      btn.addEventListener('click', () => {
+        currentColor = color;
+        Array.from(palette.children).forEach(c => c.style.borderColor = 'transparent');
+        btn.style.borderColor = 'white';
+      });
+      palette.appendChild(btn);
+    });
     
-    function loop() {
-      update();
-      render();
-      requestAnimationFrame(loop);
-    }
+    const clearBtn = document.createElement('button');
+    clearBtn.innerText = 'Reset';
+    clearBtn.className = 'ml-2 text-xs text-zinc-400 hover:text-white font-mono bg-zinc-800 px-3 py-1 rounded border border-zinc-700 transition-colors hover:bg-zinc-700';
+    clearBtn.addEventListener('click', () => {
+       pixels = new Array(GRID * GRID).fill(null);
+       renderEditor();
+       renderEngine();
+       flashIndicator();
+    });
+    palette.appendChild(clearBtn);
     
-    loop();
+    editorCanvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      paint(e);
+    });
+    window.addEventListener('mouseup', () => isDrawing = false);
+    editorCanvas.addEventListener('mousemove', paint);
+    
+    editorCanvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      isDrawing = true;
+      paint(e);
+    }, {passive: false});
+    window.addEventListener('touchend', () => isDrawing = false);
+    editorCanvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      paint(e);
+    }, {passive: false});
+    
+    renderEditor();
+    renderEngine();
   }
   
-  document.addEventListener('astro:page-load', initInteractiveBanner);
+  document.addEventListener('astro:page-load', initLiveSyncBanner);
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    initInteractiveBanner();
+    initLiveSyncBanner();
   } else {
-    document.addEventListener('DOMContentLoaded', initInteractiveBanner);
+    document.addEventListener('DOMContentLoaded', initLiveSyncBanner);
   }
 </script>
 
