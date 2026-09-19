@@ -28,38 +28,44 @@ playStoreLink: "#"
     let nextGrid = [];
     let targetMask = [];
     let isGravitating = false;
-    let lastActivityTime = null;
+    let lastActivityTime = Date.now();
 
     function generateMask() {
-      const offscreen = document.createElement('canvas');
-      offscreen.width = cols * RES;
-      offscreen.height = rows * RES;
-      const octx = offscreen.getContext('2d');
-      
-      octx.fillStyle = 'black';
-      octx.fillRect(0, 0, offscreen.width, offscreen.height);
-      
-      octx.fillStyle = 'white';
-      octx.textAlign = 'center';
-      octx.textBaseline = 'middle';
-      
-      let fontSize = Math.floor((cols * RES) / 5);
-      if (fontSize > (rows * RES) / 2.5) fontSize = Math.floor((rows * RES) / 2.5);
-      
-      octx.font = `bold ${fontSize}px sans-serif`;
-      octx.fillText('pixelSync', offscreen.width / 2, offscreen.height / 2);
-      
-      const imgData = octx.getImageData(0, 0, offscreen.width, offscreen.height).data;
-      targetMask = new Array(cols * rows).fill(0);
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const px = c * RES + Math.floor(RES / 2);
-          const py = r * RES + Math.floor(RES / 2);
-          const idx = (py * offscreen.width + px) * 4;
-          if (imgData[idx] > 127) { 
-            targetMask[r * cols + c] = 1;
+      try {
+        const offscreen = document.createElement('canvas');
+        offscreen.width = cols * RES;
+        offscreen.height = rows * RES;
+        const octx = offscreen.getContext('2d');
+        
+        octx.fillStyle = 'black';
+        octx.fillRect(0, 0, offscreen.width, offscreen.height);
+        
+        octx.fillStyle = 'white';
+        octx.textAlign = 'center';
+        octx.textBaseline = 'middle';
+        
+        let fontSize = Math.floor((cols * RES) / 5);
+        if (fontSize > (rows * RES) / 2.5) fontSize = Math.floor((rows * RES) / 2.5);
+        if (fontSize < 10) fontSize = 10;
+        
+        octx.font = `bold ${fontSize}px sans-serif`;
+        octx.fillText('pixelSync', offscreen.width / 2, offscreen.height / 2);
+        
+        const imgData = octx.getImageData(0, 0, offscreen.width, offscreen.height).data;
+        targetMask = new Array(cols * rows).fill(0);
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const px = c * RES + Math.floor(RES / 2);
+            const py = r * RES + Math.floor(RES / 2);
+            const idx = (py * offscreen.width + px) * 4;
+            if (idx >= 0 && idx < imgData.length && imgData[idx] > 127) { 
+              targetMask[r * cols + c] = 1;
+            }
           }
         }
+      } catch (e) {
+        console.error('Mask generation error:', e);
+        targetMask = new Array(cols * rows).fill(0);
       }
     }
 
@@ -173,11 +179,10 @@ playStoreLink: "#"
     function loop(time) {
       requestAnimationFrame(loop);
       if (!cols || !rows) return;
-      if (lastActivityTime === null) lastActivityTime = time;
       if(time - lastTime < 100) return;
       lastTime = time;
       
-      isGravitating = (time - lastActivityTime > 4000);
+      isGravitating = (Date.now() - lastActivityTime > 4000);
       
       update();
       render();
@@ -186,7 +191,7 @@ playStoreLink: "#"
     let isDrawing = false;
     function spawn(e) {
       if(!isDrawing) return;
-      lastActivityTime = performance.now();
+      lastActivityTime = Date.now();
       const rect = canvas.getBoundingClientRect();
       const cx = e.touches ? e.touches[0].clientX : e.clientX;
       const cy = e.touches ? e.touches[0].clientY : e.clientY;
@@ -204,10 +209,10 @@ playStoreLink: "#"
       }
       render();
     }
-    canvas.addEventListener('mousedown', e => { isDrawing = true; spawn(e); });
+    canvas.addEventListener('mousedown', e => { isDrawing = true; lastActivityTime = Date.now(); spawn(e); });
     canvas.addEventListener('mousemove', spawn);
     window.addEventListener('mouseup', () => isDrawing = false);
-    canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; spawn(e); }, {passive: false});
+    canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; lastActivityTime = Date.now(); spawn(e); }, {passive: false});
     canvas.addEventListener('touchmove', e => { e.preventDefault(); spawn(e); }, {passive: false});
     window.addEventListener('touchend', () => isDrawing = false);
   }
