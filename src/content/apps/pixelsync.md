@@ -44,7 +44,6 @@ tools optimized for mobile.
 <div class="absolute bottom-4 z-30 flex gap-2" id="pxs-indicators"></div>
 </div>
 
-
 ## LIVE ENGINE INTEGRATION (UNITY & GODOT)
 
 Stop emailing yourself files and breaking your workflow. Connect PixelSync
