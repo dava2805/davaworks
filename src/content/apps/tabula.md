@@ -18,7 +18,12 @@ Most to-do lists are digital graveyards for things you will never do. Tabula is 
 ## The Philosophy of the Blank Slate
 To-do lists breed hoarding and guilt. Tabula is built on the concept of Tabula Rasa—the blank slate. We restrict your focus, sync seamlessly with your real-world calendar, and automatically burn whatever you don't finish. Every single day is a fresh start.
 
-![Tabula Always on Top Mac App](../../assets/projects/tabula/mac_always_on_top.png)
+<div class="not-prose flex flex-row justify-center gap-4 my-12">
+  <img src="/projects/tabula/Bild1.png" alt="Tabula Screenshot 1" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/tabula/Bild2.png" alt="Tabula Screenshot 2" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/tabula/Bild3.png" alt="Tabula Screenshot 3" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/tabula/Bild4.png" alt="Tabula Screenshot 4" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+</div>
 
 ## Core Features
 - **The Strict Slate:** You are strictly limited to 5 tasks a day. Swipe right to execute. Swipe left to undo. Limit your focus and do the work.
@@ -28,6 +33,11 @@ To-do lists breed hoarding and guilt. Tabula is built on the concept of Tabula R
 - **Contextual Calendar:** View your daily schedule right alongside your slate. See exactly how much time you actually have before you commit to a task.
 - **AI Brain Dump (BYOK):** Got too much on your mind? Speak your chaotic thoughts into the app and let AI instantly structure them into actionable project tasks. Bring Your Own Key (BYOK) keeps you in total control of your data and usage.
 - **"Life Happens" Mode:** A one-day pause button for the daily wipe when emergencies strike.
+
+### TABULA ON MAC HAS ALWAYS ON TOP-MODE. 
+**so you NEVER LOSE TRACK OF WHAT MATTERS.**
+
+![Tabula Always on Top Mac App](../../assets/projects/tabula/mac_always_on_top.png)
 
 ## Privacy & Ownership First
 Tabula operates entirely on a privacy-first, decentralized model. We don't want your data.
