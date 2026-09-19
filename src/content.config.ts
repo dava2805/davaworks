@@ -14,6 +14,8 @@ const projectSchema = ({ image }: any) => z.object({
   title: z.string(),
   description: z.string(),
   coverImage: image().optional(),
+  bannerImage: image().optional(),
+  profileImage: image().optional(),
   span: z.number().default(1),
   featured: z.boolean().default(false),
   category: z.enum(['Apps', 'Hardware', 'Music']),
