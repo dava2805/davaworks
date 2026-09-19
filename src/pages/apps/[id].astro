@@ -15,7 +15,7 @@ const { app } = Astro.props;
 const { Content } = await render(app);
 ---
 
-<Layout title={app.data.title}>
+<Layout title={app.data.title} description={app.data.description} image={app.data.coverImage?.src}>
   <div class="max-w-3xl mx-auto">
     <div class="mb-12">
       {app.data.icon && <div class="text-6xl mb-6">{app.data.icon}</div>}

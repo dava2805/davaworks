@@ -15,7 +15,7 @@ const { item } = Astro.props;
 const { Content } = await render(item);
 ---
 
-<Layout title={item.data.title}>
+<Layout title={item.data.title} description={item.data.description} image={item.data.coverImage?.src}>
   <div class="max-w-3xl mx-auto">
     {item.data.bannerImage && (
       <div class="w-full h-48 md:h-64 mb-12 rounded-3xl overflow-hidden shadow-2xl border border-zinc-800 relative group">

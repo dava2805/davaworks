@@ -4,23 +4,47 @@ import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description = "Crafting digital and physical experiences. Apps, Hardware, Music.",
+  image = "/logo.jpg" 
+} = Astro.props;
+
+// Ensure image is an absolute URL for Open Graph/Twitter if it's a relative path starting with /
+const siteUrl = "https://davaworks.com";
+const absoluteImageUrl = image.startsWith('http') ? image : (image.startsWith('/') ? `${siteUrl}${image}` : `${siteUrl}/${image}`);
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 ---
 
 <!doctype html>
 <html lang="en" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Davaworks - Crafting digital and physical experiences." />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/jpeg" href="/logo.jpg" />
     <link rel="apple-touch-icon" href="/logo.jpg" />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={`${title} | Davaworks`} />
-    <meta property="og:description" content="Crafting digital and physical experiences. Apps, Hardware, Music." />
-    <meta property="og:image" content="https://davaworks.com/logo.jpg" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={absoluteImageUrl} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={`${title} | Davaworks`} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={absoluteImageUrl} />
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <title>{title} | Davaworks</title>
     <ClientRouter />
