@@ -16,17 +16,20 @@ Data processing on this website is carried out by the website operator. You can 
 
 **How do we collect your data?**
 On the one hand, your data is collected when you provide it to us. This could be data you transmit via email, for example.
-Other data is collected automatically or after your consent when you visit the website through our IT systems. This is primarily technical data (e.g., internet browser, operating system, or time of the page request). This data is collected automatically as soon as you enter this website.
+Other data is collected automatically when you visit the website through our IT systems. We use Cloudflare Web Analytics, a privacy-first analytics tool. Cloudflare Web Analytics does not use any client-side state, such as cookies or localStorage, to collect usage metrics. We also do not collect or store IP addresses or any other personally identifiable information (PII) for analytics purposes.
 
 **What do we use your data for?**
-Part of the data is collected to ensure the website is provided without errors.
+Part of the data is collected to ensure the website is provided without errors and to analyze general website traffic trends in a privacy-preserving manner.
 
-## 2. Hosting
+## 2. Hosting & Analytics
 
 ### External Hosting (GitHub Pages / Cloudflare)
-This website is hosted by an external service provider (hoster). The personal data collected on this website is stored on the hoster's servers. This may include IP addresses, metadata and communications, web page access, and other data generated via a website.
+This website is hosted by an external service provider (hoster). 
 
-The hoster is used for the purpose of fulfilling our contract with our potential and existing customers (Art. 6(1)(b) GDPR) and in the interest of a secure, fast, and efficient provision of our online services by a professional provider (Art. 6(1)(f) GDPR).
+### Cloudflare Web Analytics
+We use Cloudflare Web Analytics to measure website traffic. This service is designed to protect your privacy. It does not use cookies, and it does not collect or track your IP address or any other personally identifiable information. The data collected consists solely of basic HTTP request metrics (such as page views, referrers, and browser types) which are aggregated to help us understand how our website is used.
+
+The use of Cloudflare is for the purpose of fulfilling our contract with our potential and existing customers (Art. 6(1)(b) GDPR) and in the interest of a secure, fast, and efficient provision of our online services and website analytics by a professional provider (Art. 6(1)(f) GDPR).
 
 ## 3. General Notes and Mandatory Information
 

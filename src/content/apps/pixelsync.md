@@ -1,6 +1,6 @@
 ---
 title: "PixelSync"
-description: "Pro pixel art creation & animation. Sync directly to Unity via Wi-Fi."
+description: "Pro pixel art creation & animation. Sync directly to Unity & Godot via Wi-Fi."
 coverImage: "../../assets/projects/pixelsync_app_icon_transparent.png"
 span: 1
 featured: true
@@ -11,13 +11,226 @@ playStoreLink: "#"
 
 # PixelSync
 
-**Pro pixel art creation & animation.**
+**A professional-grade pixel art and animation suite in your pocket. Zero ads. Zero costs. No accounts required.**
 
-![PixelSync Banner](../../assets/projects/pixelsync/banner.png)
+<div class="w-full max-w-3xl mx-auto my-8 relative rounded-2xl overflow-hidden shadow-2xl bg-zinc-900 border border-white/10" style="height: 300px;">
+  <canvas id="interactive-banner" class="absolute inset-0 w-full h-full cursor-crosshair touch-none"></canvas>
+  <div id="banner-ui" class="absolute top-4 left-4 right-4 flex justify-between pointer-events-none">
+    <div class="text-white/70 font-mono text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-md">Draw a bridge to save him!</div>
+    <button id="banner-reset" class="pointer-events-auto text-white/70 hover:text-white bg-black/50 hover:bg-black/80 px-3 py-1 rounded-full backdrop-blur-md transition-all font-mono text-sm border border-white/10">Reset</button>
+  </div>
+</div>
 
-Sync directly to Unity via Wi-Fi, extract real-world palettes, or draw with friends! 100% free, zero ads.
+<script>
+  function initInteractiveBanner() {
+    const canvas = document.getElementById('interactive-banner');
+    if (!canvas || canvas.dataset.initialized) return;
+    canvas.dataset.initialized = 'true';
+    
+    const ctx = canvas.getContext('2d');
+    
+    function resize() {
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    const state = {
+      player: { x: -50, y: 150, width: 20, height: 20, velocityY: 0, velocityX: 2.5, isJumping: false },
+      gravity: 0.5,
+      groundY: 200,
+      gap: { x: canvas.width / 2 - 60, width: 120 },
+      drawnPixels: [],
+      isDrawing: false,
+      lastDrawPos: null,
+      gameOver: false,
+      success: false
+    };
 
-A pro-level pixel art suite in your pocket. PixelSync is a powerful, completely free editor built for indie game developers, digital artists, and retro enthusiasts. Whether you are creating static character sprites, crafting complex animations, or teaming up with a friend to draw in real-time, you get desktop-class workflow tools on the go.
+    function updateGap() {
+        state.gap.x = canvas.width / 2 - 60;
+    }
+    window.addEventListener('resize', updateGap);
+    updateGap();
+    
+    function getMousePos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+    
+    function startDrawing(e) {
+      e.preventDefault();
+      state.isDrawing = true;
+      state.lastDrawPos = getMousePos(e);
+      addPixel(state.lastDrawPos);
+    }
+    
+    function draw(e) {
+      if (!state.isDrawing) return;
+      e.preventDefault();
+      const pos = getMousePos(e);
+      
+      if (state.lastDrawPos) {
+        const dx = pos.x - state.lastDrawPos.x;
+        const dy = pos.y - state.lastDrawPos.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const steps = Math.max(Math.floor(distance / 5), 1);
+        
+        for (let i = 0; i <= steps; i++) {
+          const x = state.lastDrawPos.x + (dx * i) / steps;
+          const y = state.lastDrawPos.y + (dy * i) / steps;
+          addPixel({x, y});
+        }
+      }
+      
+      state.lastDrawPos = pos;
+    }
+    
+    function stopDrawing() {
+      state.isDrawing = false;
+      state.lastDrawPos = null;
+    }
+    
+    function addPixel(pos) {
+      const gridSize = 10;
+      const gridX = Math.floor(pos.x / gridSize) * gridSize;
+      const gridY = Math.floor(pos.y / gridSize) * gridSize;
+      
+      const exists = state.drawnPixels.some(p => p.x === gridX && p.y === gridY);
+      if (!exists) {
+        state.drawnPixels.push({x: gridX, y: gridY, size: gridSize});
+      }
+    }
+    
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    window.addEventListener('mouseup', stopDrawing);
+    
+    canvas.addEventListener('touchstart', startDrawing, {passive: false});
+    canvas.addEventListener('touchmove', draw, {passive: false});
+    window.addEventListener('touchend', stopDrawing);
+    
+    document.getElementById('banner-reset').addEventListener('click', () => {
+      state.player = { x: -50, y: 150, width: 20, height: 20, velocityY: 0, velocityX: 2.5, isJumping: false };
+      state.drawnPixels = [];
+      state.gameOver = false;
+      state.success = false;
+    });
+    
+    function update() {
+      if (state.gameOver || state.success) {
+        if (state.player.y > canvas.height + 50) {
+            if (!state.resetTimer) {
+                state.resetTimer = setTimeout(() => {
+                    document.getElementById('banner-reset').click();
+                    state.resetTimer = null;
+                }, 1000);
+            }
+        }
+      } else {
+        state.player.velocityY += state.gravity;
+        state.player.y += state.player.velocityY;
+        state.player.x += state.player.velocityX;
+        
+        const onGround = state.player.y + state.player.height >= state.groundY;
+        const inGap = state.player.x + state.player.width > state.gap.x && state.player.x < state.gap.x + state.gap.width;
+        
+        if (onGround && !inGap) {
+          state.player.y = state.groundY - state.player.height;
+          state.player.velocityY = 0;
+        }
+        
+        for (const pixel of state.drawnPixels) {
+          if (
+            state.player.x < pixel.x + pixel.size &&
+            state.player.x + state.player.width > pixel.x &&
+            state.player.y + state.player.height >= pixel.y &&
+            state.player.y < pixel.y + pixel.size &&
+            state.player.velocityY >= 0
+          ) {
+            state.player.y = pixel.y - state.player.height;
+            state.player.velocityY = 0;
+            break;
+          }
+        }
+        
+        if (state.player.y > canvas.height) {
+          state.gameOver = true;
+        }
+        
+        if (state.player.x > canvas.width) {
+          state.success = true;
+          if (!state.resetTimer) {
+              state.resetTimer = setTimeout(() => {
+                  document.getElementById('banner-reset').click();
+                  state.resetTimer = null;
+              }, 2000);
+          }
+        }
+      }
+    }
+    
+    function render() {
+      ctx.fillStyle = '#18181b';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = '#3f3f46';
+      ctx.fillRect(0, state.groundY, state.gap.x, canvas.height - state.groundY);
+      ctx.fillRect(state.gap.x + state.gap.width, state.groundY, canvas.width - (state.gap.x + state.gap.width), canvas.height - state.groundY);
+      
+      ctx.fillStyle = '#10b981';
+      for (const pixel of state.drawnPixels) {
+        ctx.fillRect(pixel.x, pixel.y, pixel.size, pixel.size);
+        ctx.fillStyle = '#047857';
+        ctx.fillRect(pixel.x, pixel.y + pixel.size - 2, pixel.size, 2);
+        ctx.fillStyle = '#10b981';
+      }
+      
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(state.player.x, state.player.y, state.player.width, state.player.height);
+      
+      ctx.fillStyle = 'white';
+      ctx.fillRect(state.player.x + 12, state.player.y + 4, 4, 4);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(state.player.x + 14, state.player.y + 4, 2, 2);
+      
+      if (state.gameOver) {
+        ctx.fillStyle = 'white';
+        ctx.font = '24px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Oops! Try again.', canvas.width/2, canvas.height/2 - 20);
+      } else if (state.success) {
+        ctx.fillStyle = 'white';
+        ctx.font = '24px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('Great job!', canvas.width/2, canvas.height/2 - 20);
+      }
+    }
+    
+    function loop() {
+      update();
+      render();
+      requestAnimationFrame(loop);
+    }
+    
+    loop();
+  }
+  
+  document.addEventListener('astro:page-load', initInteractiveBanner);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initInteractiveBanner();
+  } else {
+    document.addEventListener('DOMContentLoaded', initInteractiveBanner);
+  }
+</script>
+
+PixelSync is a powerhouse pixel art editor purpose-built for indie game developers, digital artists, and retro enthusiasts. Whether you are drafting static character sprites, crafting complex frame-by-frame animations, or teaming up with a friend to draw in real-time, PixelSync delivers desktop-class workflow tools optimized for mobile.
 
 <div class="not-prose my-16 relative w-full h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden" id="pxs-slider-container">
   
@@ -52,7 +265,6 @@ A pro-level pixel art suite in your pocket. PixelSync is a powerful, completely 
 
     let currentIndex = 0;
     
-    // Create elements
     images.forEach((img, index) => {
       const el = document.createElement('img');
       el.src = `/projects/pixelsync/slide_images/${img}`;
@@ -143,7 +355,6 @@ A pro-level pixel art suite in your pocket. PixelSync is a powerful, completely 
     updateSlider();
     startInterval();
     
-    // Handle resize to fix spacing
     window.addEventListener('resize', updateSlider);
   }
   
@@ -155,16 +366,34 @@ A pro-level pixel art suite in your pocket. PixelSync is a powerful, completely 
   }
 </script>
 
-## Developer-Focused Features
-- **Live Unity Sync:** Stop emailing yourself files. Connect over local Wi-Fi and watch every pixel and frame update instantly inside your Unity project.
-- **Real-Time Collaboration:** Use a 6-digit room code to host a session and draw with friends live, complete with online presence badges. Also available over local network.
-- **Pixel Mail (Home Screen Widget):** Surprise your friends with art! Connect with other artists and "drop" custom pixel creations straight to their device's home screen widget. It's a fun, seamless way to share inspiration without them ever needing to open the app.
-- **Real-World Color Picker:** Open your device's camera inside the app and instantly extract custom pixel art palettes from your physical surroundings.
-- **Desktop-Class Tools:** Isolate your art with infinite layers, frame-by-frame animation, pixel-perfect pencils, dithering brushes, and color replacement.
-- **Game-Ready Exports:** Instantly export as PNGs, smart-scaled GIFs, sequential Spritesheets, or fully packaged Game Atlases (ZIP) ready for Unity and Godot.
+## LIVE ENGINE INTEGRATION (UNITY & GODOT)
+Stop emailing yourself files and breaking your workflow. Connect PixelSync directly to your Unity or Godot project over your local Wi-Fi network. Every pixel you draw and frame you animate updates instantly inside your game engine. No cables, no manual exporting, no hassle—just pure, uninterrupted iteration.
 
-## 100% Free & Community Powered
-We believe creative tools shouldn't be hidden behind paywalls or annoying pop-up ads. PixelSync has zero subscriptions and zero ads. We rely entirely on optional, one-time "Tip Jar" donations to fund new features, keep the app ad-free, and pay for our multiplayer servers.
+## PRIVATE REAL-TIME COLLABORATION
+Host a secure, cloud-synced session via a private 6-digit room code to design with teammates, or launch a local network session to collaborate instantly on the same Wi-Fi. Whether you are across the globe or across the couch, watch the canvas update in real-time with live presence badges. All collaboration is strictly private, functioning solely as a local utility tool without public feeds or broadcasting.
+
+## PIXEL MAIL (HOME SCREEN WIDGET)
+Surprise your friends and teammates with art! Connect with other artists and secretly "drop" custom pixel creations straight to their iOS or Android home screen widget. It's a fun, seamless way to share inspiration and keep your team motivated without anyone ever needing to open the app.
+
+## VIDEO REFERENCE IMPORT
+Import your reference video from your camera roll and apply standard pixelation filters for rotoscoping and animation study. Create frame-by-frame pixel art animations manually using your imported references to experiment with complex motion and visual styles.
+
+## DESKTOP-CLASS WORKFLOW & TOOLS
+• **Customizable Workspace:** Fully reorder your toolbar globally to fit your personal workflow, and save per-project grid settings and frame rates.
+• **Advanced Layering:** Isolate line art and shading with infinite layers, adjustable opacity, and true Source-Over alpha blending for perfect transparency.
+• **Precision Toolset:** Pixel-perfect pencils, magic wand selection, shape tools, dithering brushes, and global color replacement.
+• **Real-World Palettes:** Stuck finding the perfect colors? Open your device's camera inside the app and extract custom pixel art palettes directly from your surroundings.
+
+## FULL ANIMATION SUITE
+Bring your sprites to life with an intuitive timeline. Manage frames, adjust project-specific FPS, and utilize onion-skinning to craft fluid, professional animations on the go.
+
+## ENGINE-READY EXPORTS
+Export your art exactly how you need it. Generate crisp, nearest-neighbor upscaled PNGs and GIFs for social media, or export mathematically perfect Spritesheets and Game Atlases (ZIP) natively formatted for engines like Unity and Godot. You can even export natively to .ase / .aseprite formats to seamlessly continue your work in Aseprite.
+
+## COMMUNITY-POWERED & PRIVACY FIRST
+Creative tools shouldn't be hidden behind paywalls, intrusive tracking, or pop-up ads. PixelSync is entirely free to use and respects your privacy. We rely entirely on optional "Tip Jar" support from artists who love the app. As a special thank-you, dropping a tip in the jar unlocks an exclusive, animated Pixel Pet companion that lives right on your home screen! Every tip goes directly to funding new features, server costs for multiplayer, and keeping the app ad-free forever.
+
+Download PixelSync today and start building your next pixel masterpiece.
 
 ---
 [Privacy Policy](/legal/pixelsync-privacy) • [Terms of Service](/legal/pixelsync-tos)
