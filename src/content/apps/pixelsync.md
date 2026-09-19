@@ -18,35 +18,42 @@ playStoreLink: "#"
 </div>
 <script is:inline>
   function initGOLBanner() {
-    const canvases = document.querySelectorAll('#px-gol');
-    canvases.forEach(canvas => {
-      if (!canvas || canvas.dataset.initialized) return;
-      canvas.dataset.initialized = 'true';
-      const ctx = canvas.getContext('2d');
-      const RES = 12;
+    const canvas = document.getElementById('px-gol');
+    if (!canvas || canvas.dataset.initialized) return;
+    canvas.dataset.initialized = 'true';
+    const ctx = canvas.getContext('2d');
+    const RES = 12;
     let cols, rows;
     let grid = [];
     let nextGrid = [];
+    
     let targetMask = [];
     let isGravitating = false;
     let lastActivityTime = Date.now();
-
-    function generateMask() {
+    
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width || 800; // Safe fallback
+      canvas.height = rect.height || 400; // Safe fallback
+      cols = Math.ceil(canvas.width / RES);
+      rows = Math.ceil(canvas.height / RES);
+      grid = new Array(cols * rows).fill(0);
+      nextGrid = new Array(cols * rows).fill(0);
+      for(let i=0; i<grid.length; i++) {
+        if(Math.random() > 0.85) grid[i] = 1;
+      }
+      
       try {
         ctx.fillStyle = 'black';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        
         let fontSize = Math.floor((cols * RES) / 5);
         if (fontSize > (rows * RES) / 2.5) fontSize = Math.floor((rows * RES) / 2.5);
         if (fontSize < 10) fontSize = 10;
-        
         ctx.font = `bold ${fontSize}px sans-serif`;
         ctx.fillText('PixelSync', canvas.width / 2, canvas.height / 2);
-        
         const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         targetMask = new Array(cols * rows).fill(0);
         for (let r = 0; r < rows; r++) {
@@ -59,43 +66,24 @@ playStoreLink: "#"
             }
           }
         }
-        
-        // Restore background
         ctx.fillStyle = '#09090b';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       } catch (e) {
-        console.error('Mask generation error:', e);
         targetMask = new Array(cols * rows).fill(0);
       }
     }
-
-    function resize() {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) {
-        requestAnimationFrame(resize);
-        return;
-      }
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-      cols = Math.ceil(canvas.width / RES);
-      rows = Math.ceil(canvas.height / RES);
-      grid = new Array(cols * rows).fill(0);
-      nextGrid = new Array(cols * rows).fill(0);
-      for(let i=0; i<grid.length; i++) {
-        if(Math.random() > 0.85) grid[i] = 1;
-      }
-      generateMask();
-    }
     window.addEventListener('resize', resize);
     resize();
-      function getColor(age) {
-        if(age === 0) return null;
-        if(age === 1) return '#ffffff';
-        if(age < 4) return '#60a5fa'; // vibrant blue
-        if(age < 10) return '#8b5cf6'; // vibrant purple
-        if(age < 20) return '#d946ef'; // vibrant fuchsia
-        return '#ec4899'; // vibrant pink - never fades to black
-      }
+    
+    function getColor(age) {
+      if(age === 0) return null;
+      if(age === 1) return '#ffffff';
+      if(age < 4) return '#60a5fa';
+      if(age < 10) return '#8b5cf6';
+      if(age < 20) return '#d946ef';
+      return '#ec4899';
+    }
+    
     function update() {
       for(let i=0; i<grid.length; i++) {
         const c = i % cols;
@@ -129,19 +117,15 @@ playStoreLink: "#"
 
         if (isGravitating) {
           if (targetMask[i] === 1) {
-            // Slower, more organic spawning inside the mask
             if (grid[i] === 0 && Math.random() < 0.04) {
               nextState = 1;
             } else if (grid[i] > 0 && nextState === 0 && Math.random() < 0.85) {
-              // High but not perfect survival chance looks more organic
               nextState = grid[i] + 1;
             }
           } else {
-            // Slower dying outside the mask
             if (grid[i] > 0 && Math.random() < 0.08) {
               nextState = 0;
             }
-            // Add a tiny bit of noise
             if (grid[i] === 0 && Math.random() < 0.002) {
               nextState = 1;
             }
@@ -154,6 +138,7 @@ playStoreLink: "#"
         grid[i] = nextGrid[i];
       }
     }
+    
     function render() {
       ctx.fillStyle = '#09090b';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -178,6 +163,7 @@ playStoreLink: "#"
         }
       }
     }
+    
     let lastTime = 0;
     function loop(time) {
       requestAnimationFrame(loop);
@@ -191,6 +177,7 @@ playStoreLink: "#"
       render();
     }
     requestAnimationFrame(loop);
+    
     let isDrawing = false;
     function spawn(e) {
       if(!isDrawing) return;
@@ -216,9 +203,8 @@ playStoreLink: "#"
     canvas.addEventListener('mousemove', spawn);
     window.addEventListener('mouseup', () => isDrawing = false);
     canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; lastActivityTime = Date.now(); spawn(e); }, {passive: false});
-      canvas.addEventListener('touchmove', e => { e.preventDefault(); spawn(e); }, {passive: false});
-      window.addEventListener('touchend', () => isDrawing = false);
-    });
+    canvas.addEventListener('touchmove', e => { e.preventDefault(); spawn(e); }, {passive: false});
+    window.addEventListener('touchend', () => isDrawing = false);
   }
   document.addEventListener('astro:page-load', initGOLBanner);
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
