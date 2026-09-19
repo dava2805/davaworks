@@ -13,84 +13,76 @@ playStoreLink: "#"
 
 **A professional-grade pixel art and animation suite in your pocket. Zero ads. Zero costs. No accounts required.**
 
-<div class="not-prose w-full max-w-4xl mx-auto my-12 flex flex-col md:flex-row gap-4 h-auto md:h-[350px]">
-  <!-- Left Side: Mobile App Editor -->
-  <div class="flex-1 bg-zinc-900 border border-zinc-700 rounded-2xl flex flex-col p-4 shadow-2xl relative min-h-[300px]">
+<div class="not-prose w-full max-w-5xl mx-auto my-12 flex flex-col lg:flex-row gap-4 h-auto lg:h-[400px]">
+  <div class="flex-1 bg-zinc-900 border border-zinc-700 rounded-2xl flex flex-col p-4 shadow-2xl relative min-h-[350px]">
     <div class="absolute top-3 left-4 flex items-center gap-2">
       <div class="w-3 h-3 rounded-full bg-red-500"></div>
       <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
       <div class="w-3 h-3 rounded-full bg-green-500"></div>
-      <span class="text-xs font-mono text-zinc-500 ml-2">PixelSync</span>
+      <span class="text-xs font-mono text-zinc-500 ml-2">PixelSync App</span>
     </div>
-    
     <div class="flex-1 flex flex-col items-center justify-center mt-6">
-      <canvas id="px-editor" width="160" height="160" class="bg-zinc-800 border border-zinc-600 cursor-crosshair touch-none shadow-inner" style="image-rendering: pixelated; width: 200px; height: 200px;"></canvas>
-      
-      <div class="flex gap-2 mt-6" id="px-palette">
-        <!-- JS will populate colors -->
-      </div>
+      <canvas id="px-editor" width="160" height="160" class="bg-zinc-800 border border-zinc-600 cursor-crosshair touch-none shadow-inner" style="image-rendering: pixelated; width: 220px; height: 220px;"></canvas>
+      <div class="flex gap-2 mt-6" id="px-palette"></div>
     </div>
   </div>
-
-  <!-- Right Side: Engine Sync -->
-  <div class="flex-1 bg-[#1e1e1e] border border-zinc-700 rounded-2xl flex flex-col overflow-hidden shadow-2xl min-h-[300px]">
-    <!-- Engine Header -->
-    <div class="h-10 bg-[#323233] flex items-center px-4 border-b border-[#1e1e1e]">
-      <span class="text-xs font-mono text-zinc-400">Unity - Scene</span>
-      <div class="ml-auto flex items-center gap-2">
-        <span class="text-[10px] font-mono text-green-400">LIVE SYNC</span>
-        <div id="sync-indicator" class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e] transition-all duration-150"></div>
+  <div class="flex-1 flex flex-col gap-4">
+    <div class="flex-1 flex gap-4">
+      <div class="flex-1 bg-[#1e1e1e] border border-zinc-700 rounded-xl flex flex-col overflow-hidden shadow-lg relative">
+        <div class="h-6 bg-[#323233] flex items-center px-2 border-b border-[#1e1e1e]">
+          <span class="text-[9px] font-mono text-zinc-400">Unity Engine</span>
+          <div class="ml-auto w-1.5 h-1.5 rounded-full bg-green-500 sync-pulse transition-all duration-150"></div>
+        </div>
+        <div class="flex-1 bg-[#252526] relative overflow-hidden flex items-center justify-center" style="background-image: radial-gradient(#3f3f46 1px, transparent 1px); background-size: 8px 8px;">
+          <canvas id="px-unity" width="160" height="160" class="shadow-2xl" style="image-rendering: pixelated; width: 100px; height: 100px;"></canvas>
+        </div>
+      </div>
+      <div class="flex-1 bg-white border border-zinc-200 rounded-xl flex flex-col overflow-hidden shadow-lg relative">
+        <div class="h-6 bg-zinc-100 flex items-center px-2 border-b border-zinc-200">
+          <span class="text-[9px] font-medium text-zinc-500">Co-op User's iPad</span>
+          <div class="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500 sync-pulse transition-all duration-150"></div>
+        </div>
+        <div class="flex-1 bg-zinc-50 relative flex items-center justify-center">
+          <canvas id="px-collab" width="160" height="160" class="shadow-sm border border-zinc-200" style="image-rendering: pixelated; width: 100px; height: 100px;"></canvas>
+          <div class="absolute animate-bounce" style="top:20px; right:20px;"><span class="text-xl">✍️</span></div>
+        </div>
       </div>
     </div>
-    
-    <!-- Engine Body -->
-    <div class="flex-1 flex">
-      <!-- Hierarchy -->
-      <div class="hidden md:flex w-24 border-r border-[#323233] p-3 flex-col gap-2">
-        <div class="h-2 bg-zinc-600 rounded w-full"></div>
-        <div class="h-2 bg-zinc-700 rounded w-5/6 ml-2"></div>
-        <div class="h-2 bg-zinc-700 rounded w-4/6 ml-2"></div>
-        <div class="h-2 bg-zinc-700 rounded w-full mt-2"></div>
+    <div class="h-[140px] bg-gradient-to-br from-blue-400 to-purple-500 border border-zinc-700 rounded-xl overflow-hidden shadow-lg p-3 relative flex items-center justify-center">
+      <div class="absolute top-2 left-2 right-2 flex justify-between">
+        <span class="text-[9px] text-white/80 font-medium">9:41</span>
+        <span class="text-[9px] text-white/80 font-medium">🔋</span>
       </div>
-      <!-- Scene View -->
-      <div class="flex-1 bg-[#252526] relative overflow-hidden flex items-center justify-center" style="background-image: radial-gradient(#3f3f46 1px, transparent 1px); background-size: 16px 16px;">
-        <canvas id="px-engine" width="160" height="160" class="shadow-2xl" style="image-rendering: pixelated; width: 160px; height: 160px;"></canvas>
-        <!-- Mock Inspector overlay -->
-        <div class="absolute right-0 top-0 bottom-0 w-24 bg-[#252526] border-l border-[#323233] p-2 hidden md:flex flex-col gap-2 opacity-80">
-          <div class="text-[8px] font-mono text-zinc-500 mb-1">Transform</div>
-          <div class="h-1.5 bg-zinc-700 rounded w-full"></div>
-          <div class="h-1.5 bg-zinc-700 rounded w-full"></div>
-          <div class="text-[8px] font-mono text-zinc-500 mt-2 mb-1">Sprite</div>
-          <div class="h-1.5 bg-zinc-700 rounded w-full"></div>
+      <div class="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl w-[110px] h-[110px] flex flex-col items-center justify-center p-2 mt-2 shadow-xl relative">
+        <div class="absolute top-1 left-2 flex items-center gap-1">
+          <span class="text-[8px] font-bold text-white/90">Pixel Mail</span>
         </div>
+        <canvas id="px-widget" width="160" height="160" class="mt-2 drop-shadow-md" style="image-rendering: pixelated; width: 70px; height: 70px;"></canvas>
+      </div>
+      <div class="ml-6 flex flex-col gap-3">
+        <div class="w-12 h-12 bg-white/20 rounded-2xl backdrop-blur-md border border-white/20 shadow-sm flex items-center justify-center"><span class="text-[10px] text-white/70">App</span></div>
+        <div class="w-12 h-12 bg-white/20 rounded-2xl backdrop-blur-md border border-white/20 shadow-sm flex items-center justify-center"><span class="text-[10px] text-white/70">App</span></div>
       </div>
     </div>
   </div>
 </div>
-
 <script is:inline>
   function initLiveSyncBanner() {
     const editorCanvas = document.getElementById('px-editor');
-    const engineCanvas = document.getElementById('px-engine');
-    const palette = document.getElementById('px-palette');
-    const indicator = document.getElementById('sync-indicator');
-    
     if (!editorCanvas || editorCanvas.dataset.initialized) return;
     editorCanvas.dataset.initialized = 'true';
-    
     const eCtx = editorCanvas.getContext('2d');
-    const enCtx = engineCanvas.getContext('2d');
-    
+    const uCtx = document.getElementById('px-unity').getContext('2d');
+    const cCtx = document.getElementById('px-collab').getContext('2d');
+    const wCtx = document.getElementById('px-widget').getContext('2d');
+    const palette = document.getElementById('px-palette');
+    const indicators = document.querySelectorAll('.sync-pulse');
     const GRID = 16;
     const PIXEL_SIZE = editorCanvas.width / GRID;
-    
-    // Default palette
     const colors = ['#ef4444', '#3b82f6', '#10b981', '#eab308', '#ffffff', '#18181b', 'clear'];
     let currentColor = colors[0];
     let pixels = new Array(GRID * GRID).fill(null);
     let isDrawing = false;
-    
-    // Default sprite (a small sword or cursor)
     const defaultSprite = [
        {x: 7, y: 3, c: '#ffffff'}, {x: 8, y: 3, c: '#ffffff'},
        {x: 6, y: 4, c: '#ffffff'}, {x: 9, y: 4, c: '#ffffff'},
@@ -100,10 +92,7 @@ playStoreLink: "#"
        {x: 6, y: 8, c: '#ffffff'}, {x: 7, y: 8, c: '#ef4444'}, {x: 8, y: 8, c: '#ef4444'}, {x: 9, y: 8, c: '#ffffff'},
        {x: 7, y: 9, c: '#ffffff'}, {x: 8, y: 9, c: '#ffffff'},
     ];
-    defaultSprite.forEach(p => {
-       pixels[p.y * GRID + p.x] = p.c;
-    });
-    
+    defaultSprite.forEach(p => pixels[p.y * GRID + p.x] = p.c);
     function renderEditor() {
       eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
       for (let i = 0; i < pixels.length; i++) {
@@ -113,64 +102,58 @@ playStoreLink: "#"
           eCtx.fillStyle = pixels[i];
           eCtx.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
         } else {
-          // grid lines
           eCtx.strokeStyle = '#27272a';
           eCtx.lineWidth = 1;
           eCtx.strokeRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
         }
       }
     }
-    
-    function renderEngine() {
-      enCtx.clearRect(0, 0, engineCanvas.width, engineCanvas.height);
-      for (let i = 0; i < pixels.length; i++) {
-        if (pixels[i]) {
-          const x = (i % GRID) * PIXEL_SIZE;
-          const y = Math.floor(i / GRID) * PIXEL_SIZE;
-          enCtx.fillStyle = pixels[i];
-          enCtx.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+    function renderTargets() {
+      [uCtx, cCtx, wCtx].forEach(ctx => {
+        ctx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
+        for (let i = 0; i < pixels.length; i++) {
+          if (pixels[i]) {
+            const x = (i % GRID) * PIXEL_SIZE;
+            const y = Math.floor(i / GRID) * PIXEL_SIZE;
+            ctx.fillStyle = pixels[i];
+            ctx.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+          }
         }
-      }
+      });
     }
-    
-    function flashIndicator() {
-      indicator.classList.remove('bg-green-500', 'shadow-[0_0_8px_#22c55e]');
-      indicator.classList.add('bg-white', 'shadow-[0_0_12px_#ffffff]', 'scale-150');
-      setTimeout(() => {
-        indicator.classList.remove('bg-white', 'shadow-[0_0_12px_#ffffff]', 'scale-150');
-        indicator.classList.add('bg-green-500', 'shadow-[0_0_8px_#22c55e]');
-      }, 150);
+    function flashIndicators() {
+      indicators.forEach(indicator => {
+        const originalBg = indicator.classList.contains('bg-green-500') ? 'bg-green-500' : 'bg-blue-500';
+        indicator.classList.remove(originalBg);
+        indicator.classList.add('bg-white', 'scale-150');
+        setTimeout(() => {
+          indicator.classList.remove('bg-white', 'scale-150');
+          indicator.classList.add(originalBg);
+        }, 150);
+      });
     }
-    
     function paint(e) {
       if (!isDrawing) return;
       const rect = editorCanvas.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      
       const scaleX = editorCanvas.width / rect.width;
       const scaleY = editorCanvas.height / rect.height;
-      
       const x = (clientX - rect.left) * scaleX;
       const y = (clientY - rect.top) * scaleY;
-      
       const gridX = Math.floor(x / PIXEL_SIZE);
       const gridY = Math.floor(y / PIXEL_SIZE);
-      
       if (gridX >= 0 && gridX < GRID && gridY >= 0 && gridY < GRID) {
         const index = gridY * GRID + gridX;
         const colorToSet = currentColor === 'clear' ? null : currentColor;
-        
         if (pixels[index] !== colorToSet) {
           pixels[index] = colorToSet;
           renderEditor();
-          renderEngine();
-          flashIndicator();
+          renderTargets();
+          flashIndicators();
         }
       }
     }
-    
-    // Create Palette
     colors.forEach(color => {
       const btn = document.createElement('button');
       btn.className = 'w-6 h-6 md:w-8 md:h-8 rounded-full border-2 transition-transform hover:scale-110 shadow-md';
@@ -180,9 +163,7 @@ playStoreLink: "#"
       } else {
         btn.style.backgroundColor = color;
       }
-      
       btn.style.borderColor = color === currentColor ? 'white' : 'transparent';
-      
       btn.addEventListener('click', () => {
         currentColor = color;
         Array.from(palette.children).forEach(c => c.style.borderColor = 'transparent');
@@ -190,25 +171,22 @@ playStoreLink: "#"
       });
       palette.appendChild(btn);
     });
-    
     const clearBtn = document.createElement('button');
     clearBtn.innerText = 'Reset';
     clearBtn.className = 'ml-2 text-xs text-zinc-400 hover:text-white font-mono bg-zinc-800 px-3 py-1 rounded border border-zinc-700 transition-colors hover:bg-zinc-700';
     clearBtn.addEventListener('click', () => {
        pixels = new Array(GRID * GRID).fill(null);
        renderEditor();
-       renderEngine();
-       flashIndicator();
+       renderTargets();
+       flashIndicators();
     });
     palette.appendChild(clearBtn);
-    
     editorCanvas.addEventListener('mousedown', (e) => {
       isDrawing = true;
       paint(e);
     });
     window.addEventListener('mouseup', () => isDrawing = false);
     editorCanvas.addEventListener('mousemove', paint);
-    
     editorCanvas.addEventListener('touchstart', (e) => {
       e.preventDefault();
       isDrawing = true;
@@ -219,11 +197,9 @@ playStoreLink: "#"
       e.preventDefault();
       paint(e);
     }, {passive: false});
-    
     renderEditor();
-    renderEngine();
+    renderTargets();
   }
-  
   document.addEventListener('astro:page-load', initLiveSyncBanner);
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initLiveSyncBanner();
