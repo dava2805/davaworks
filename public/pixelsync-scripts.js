@@ -1,10 +1,10 @@
-function initGOLBanner() {
-  const canvas = document.getElementById('px-gol');
-  if (!canvas || canvas.dataset.initialized) return;
-  canvas.dataset.initialized = 'true';
-  const ctx = canvas.getContext('2d');
-  const RES = 10; // Smaller cells = higher resolution for the text mask
-  let cols, rows;
+  function initGOLBanner() {
+    const canvas = document.getElementById('px-gol');
+    if (!canvas || canvas.dataset.initialized) return;
+    canvas.dataset.initialized = 'true';
+    const ctx = canvas.getContext('2d');
+    const RES = 8; // Even smaller cells for better text resolution
+    let cols, rows;
   let grid = [];
   let nextGrid = [];
   
@@ -31,12 +31,12 @@ function initGOLBanner() {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       
-      // Dynamically calculate font size to perfectly fit the width (with padding)
+      // Dynamically calculate font size to perfectly fit the width (with more padding)
       let fontSize = 200;
-      ctx.font = `900 ${fontSize}px system-ui, -apple-system, sans-serif`; // Heaviest possible font
+      ctx.font = `900 ${fontSize}px system-ui, -apple-system, sans-serif`;
       let textWidth = ctx.measureText('PixelSync').width;
       
-      while (textWidth > canvas.width * 0.9 && fontSize > 10) {
+      while (textWidth > canvas.width * 0.8 && fontSize > 10) { // More padding (0.8) for readability
         fontSize -= 5;
         ctx.font = `900 ${fontSize}px system-ui, -apple-system, sans-serif`;
         textWidth = ctx.measureText('PixelSync').width;
@@ -111,16 +111,16 @@ function initGOLBanner() {
 
       if (isGravitating) {
         if (targetMask[i] === 1) {
-          if (grid[i] === 0 && Math.random() < 0.08) { // Spawn faster
+          if (grid[i] === 0 && Math.random() < 0.15) { // Spawn much faster inside
             nextState = 1;
-          } else if (grid[i] > 0 && nextState === 0 && Math.random() < 0.98) { // Almost never die inside mask
+          } else if (grid[i] > 0 && nextState === 0 && Math.random() < 0.99) { // Almost never die inside mask (solid text)
             nextState = grid[i] + 1;
           }
         } else {
-          if (grid[i] > 0 && Math.random() < 0.12) { // Die faster outside
+          if (grid[i] > 0 && Math.random() < 0.2) { // Die very fast outside
             nextState = 0;
           }
-          if (grid[i] === 0 && Math.random() < 0.001) { // Very little noise outside
+          if (grid[i] === 0 && Math.random() < 0.0001) { // Practically ZERO noise outside
             nextState = 1;
           }
         }
