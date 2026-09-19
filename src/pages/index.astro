@@ -79,7 +79,7 @@ const allProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured
             {/* Text Content Container */}
             <div class="w-full md:w-1/2 flex flex-col justify-center">
               <span class="text-sm font-mono uppercase tracking-widest text-zinc-500 mb-4 flex items-center gap-4">
-                {project.data.category}
+                {project.data.category}{project.data.subcategory ? ` - ${project.data.subcategory}` : ''}
                 <div class="h-px bg-zinc-800 flex-grow"></div>
               </span>
               <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all duration-300">
@@ -105,7 +105,7 @@ const allProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured
   <section class="mt-32 md:mt-48 mb-12 relative rounded-[3rem] overflow-hidden bg-zinc-900/40 border border-zinc-800 p-8 md:p-24 text-center group project-section opacity-0 translate-y-12 transition-all duration-1000 ease-out">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="relative z-10 max-w-3xl mx-auto">
-      <h2 class="text-sm font-mono uppercase tracking-widest text-blue-400 mb-6">Behind the Code</h2>
+      <h2 class="text-sm font-mono uppercase tracking-widest text-blue-400 mb-6">About me</h2>
       <h3 class="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tighter">David Culjak</h3>
       <p class="text-xl md:text-2xl text-zinc-400 leading-relaxed font-light">
         I build electronic hardware, develop apps and games, and have been making my own music for as long as I can remember. Driven by pure incentive and curiosity, I love bridging the gap between physical hardware and digital software to create unique, immersive experiences.

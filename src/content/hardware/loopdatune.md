@@ -5,6 +5,7 @@ span: 1
 featured: true
 category: "Hardware"
 coverImage: "../../assets/projects/datune/LoopDaTune.jpg"
+subcategory: "MUSIC"
 ---
 
 # LoopDaTune (LDT) Device

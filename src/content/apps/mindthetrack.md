@@ -7,6 +7,7 @@ featured: true
 category: "Apps"
 appStoreLink: "https://apps.apple.com/de/app/mind-the-track/id6742033008"
 playStoreLink: "https://play.google.com/store/apps/details?id=com.davaworks.mindthetrack&pcampaignid=web_share"
+subcategory: "GAME"
 ---
 
 # Mind the Track!

@@ -7,6 +7,7 @@ featured: true
 category: "Apps"
 appStoreLink: "#"
 playStoreLink: "#"
+subcategory: "MUSIC"
 ---
 
 # KLANG: The Audiovisual Pocket Studio

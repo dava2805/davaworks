@@ -7,6 +7,7 @@ featured: true
 category: "Apps"
 appStoreLink: "https://apps.apple.com/de/app/neun-roguelike-grid-tactics/id6759267387"
 playStoreLink: "#"
+subcategory: "GAME"
 ---
 
 # Neun

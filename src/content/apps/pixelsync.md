@@ -7,6 +7,7 @@ featured: true
 category: "Apps"
 appStoreLink: "#"
 playStoreLink: "#"
+subcategory: "GRAPHICS"
 ---
 
 # PixelSync
