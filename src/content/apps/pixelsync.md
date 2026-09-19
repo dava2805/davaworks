@@ -77,15 +77,13 @@ motion and visual styles.
 
 ## DESKTOP-CLASS WORKFLOW & TOOLS
 
-• **Customizable Workspace:** Fully reorder your toolbar globally to fit your
-personal workflow, and save per-project grid settings and frame rates. •
-**Advanced Layering:** Isolate line art and shading with infinite layers,
-adjustable opacity, and true Source-Over alpha blending for perfect
-transparency. • **Precision Toolset:** Pixel-perfect pencils, magic wand
-selection, shape tools, dithering brushes, and global color replacement. •
-**Real-World Palettes:** Stuck finding the perfect colors? Open your device's
-camera inside the app and extract custom pixel art palettes directly from your
-surroundings.
+• **Customizable Workspace:** Fully reorder your toolbar globally to fit your personal workflow, and save per-project grid settings and frame rates.
+
+• **Advanced Layering:** Isolate line art and shading with infinite layers, adjustable opacity, and true Source-Over alpha blending for perfect transparency.
+
+• **Precision Toolset:** Pixel-perfect pencils, magic wand selection, shape tools, dithering brushes, and global color replacement.
+
+• **Real-World Palettes:** Stuck finding the perfect colors? Open your device's camera inside the app and extract custom pixel art palettes directly from your surroundings.
 
 ## FULL ANIMATION SUITE
 
