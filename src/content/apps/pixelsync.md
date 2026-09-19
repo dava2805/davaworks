@@ -18,11 +18,12 @@ playStoreLink: "#"
 </div>
 <script is:inline>
   function initGOLBanner() {
-    const canvas = document.getElementById('px-gol');
-    if (!canvas || canvas.dataset.initialized) return;
-    canvas.dataset.initialized = 'true';
-    const ctx = canvas.getContext('2d');
-    const RES = 12;
+    const canvases = document.querySelectorAll('#px-gol');
+    canvases.forEach(canvas => {
+      if (!canvas || canvas.dataset.initialized) return;
+      canvas.dataset.initialized = 'true';
+      const ctx = canvas.getContext('2d');
+      const RES = 12;
     let cols, rows;
     let grid = [];
     let nextGrid = [];
@@ -49,7 +50,7 @@ playStoreLink: "#"
         if (fontSize < 10) fontSize = 10;
         
         octx.font = `bold ${fontSize}px sans-serif`;
-        octx.fillText('pixelSync', offscreen.width / 2, offscreen.height / 2);
+        octx.fillText('PixelSync', offscreen.width / 2, offscreen.height / 2);
         
         const imgData = octx.getImageData(0, 0, offscreen.width, offscreen.height).data;
         targetMask = new Array(cols * rows).fill(0);
@@ -130,16 +131,20 @@ playStoreLink: "#"
 
         if (isGravitating) {
           if (targetMask[i] === 1) {
-            if (grid[i] === 0 && Math.random() < 0.2) {
+            // Slower, more organic spawning inside the mask
+            if (grid[i] === 0 && Math.random() < 0.04) {
               nextState = 1;
-            } else if (grid[i] > 0 && nextState === 0) {
+            } else if (grid[i] > 0 && nextState === 0 && Math.random() < 0.85) {
+              // High but not perfect survival chance looks more organic
               nextState = grid[i] + 1;
             }
           } else {
-            if (grid[i] > 0 && Math.random() < 0.15) {
+            // Slower dying outside the mask
+            if (grid[i] > 0 && Math.random() < 0.08) {
               nextState = 0;
             }
-            if (grid[i] === 0 && Math.random() < 0.001) {
+            // Add a tiny bit of noise
+            if (grid[i] === 0 && Math.random() < 0.002) {
               nextState = 1;
             }
           }
@@ -213,8 +218,9 @@ playStoreLink: "#"
     canvas.addEventListener('mousemove', spawn);
     window.addEventListener('mouseup', () => isDrawing = false);
     canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; lastActivityTime = Date.now(); spawn(e); }, {passive: false});
-    canvas.addEventListener('touchmove', e => { e.preventDefault(); spawn(e); }, {passive: false});
-    window.addEventListener('touchend', () => isDrawing = false);
+      canvas.addEventListener('touchmove', e => { e.preventDefault(); spawn(e); }, {passive: false});
+      window.addEventListener('touchend', () => isDrawing = false);
+    });
   }
   document.addEventListener('astro:page-load', initGOLBanner);
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
