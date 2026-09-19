@@ -5,7 +5,7 @@ coverImage: "../../assets/projects/DaTune_logo_1024px_bw.001.png"
 span: 2
 featured: true
 category: "Apps"
-appStoreLink: "#"
+appStoreLink: "https://apps.apple.com/de/app/datune-tuner-metronom-loop/id6755442507"
 ---
 
 # DaTune

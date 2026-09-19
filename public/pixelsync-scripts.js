@@ -220,10 +220,11 @@ function initPixelSyncSlider() {
     el.className = 'absolute w-[200px] h-[350px] md:w-[260px] md:h-[450px] object-contain rounded-2xl shadow-2xl cursor-pointer';
     el.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s';
     el.dataset.index = index;
-    el.addEventListener('click', () => {
-      currentIndex = index;
-      updateSlider();
-      resetInterval();
+    el.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent the global listener from firing again
+      if (window.openLightbox) {
+        window.openLightbox(el.src, `PixelSync Slide ${index + 1}`);
+      }
     });
     container.appendChild(el);
 

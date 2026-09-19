@@ -2,8 +2,6 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import BentoGrid from '../components/BentoGrid.astro';
-import BentoCard from '../components/BentoCard.astro';
 import FilterButtons from '../components/FilterButtons.astro';
 import AudioPlayer from '../components/AudioPlayer.astro';
 import ModelViewer from '../components/ModelViewer.astro';
@@ -16,71 +14,131 @@ const allProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured
 ---
 
 <Layout title="Home">
-  <div class="mb-12">
-    <h1 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">Crafting digital and physical experiences.</h1>
-    <p class="text-lg text-zinc-400 max-w-2xl">
-      I'm a developer and creator exploring the intersection of software, hardware, and sound. Welcome to my portfolio.
-    </p>
+  {/* Hero Section */}
+  <section class="min-h-[70vh] flex flex-col justify-center items-center text-center relative mb-24 mt-[-88px] md:mt-[-104px] pt-[88px] md:pt-[104px]">
+    <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+      <div class="w-[600px] md:w-[1000px] h-[600px] md:h-[1000px] bg-purple-900/20 rounded-full blur-[150px] mix-blend-screen animate-blob"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto px-6 animate-fade-up">
+      <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-500 pb-2">
+        Crafting digital & <br class="hidden md:block"/> physical experiences.
+      </h1>
+      <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-medium">
+        I'm a developer and creator exploring the intersection of software, hardware, and sound.
+      </p>
+    </div>
+  </section>
+
+  {/* Filter buttons */}
+  <div class="mb-24 animate-fade-up flex justify-center" style="animation-delay: 200ms;">
+    <FilterButtons />
   </div>
 
-  <FilterButtons />
-
-  <BentoGrid>
+  {/* Cinematic Project Showcase */}
+  <div class="flex flex-col gap-32 md:gap-48 w-full max-w-6xl mx-auto px-4">
     {allProjects.map((project, index) => {
       const collectionName = project.collection;
       const href = `/${collectionName}/${project.id}`;
+      const isEven = index % 2 === 0;
 
       return (
-        <div class="animate-fade-up bento-wrapper" data-category={project.data.category} style={`animation-delay: ${index * 100}ms`}>
-          <BentoCard 
-            title={project.data.title} 
-            category={project.data.category} 
-            span={project.data.span as 1 | 2 | 3} 
-            href={href}
-          >
-            <p slot="description" class="text-zinc-400 text-sm">{project.data.description}</p>
+        <section class="project-section opacity-0 translate-y-12 transition-all duration-1000 ease-out group" data-category={project.data.category}>
+          <a href={href} class={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}>
             
-            {/* Dynamically render inner card visuals based on category */}
-          {project.data.coverImage ? (
-            <div class="w-full h-full min-h-[140px] rounded-xl overflow-hidden bg-zinc-950/50 border border-zinc-800/50 flex items-center justify-center p-6">
-              <Image src={project.data.coverImage} alt={project.data.title} class="max-w-[70%] max-h-[140px] object-contain drop-shadow-xl" />
-            </div>
-          ) : project.data.category === 'Apps' && project.data.icon ? (
-            <div class="w-full h-full bg-zinc-950/50 rounded-xl flex items-center justify-center border border-zinc-800/50 min-h-[120px]">
-              <span class="text-4xl">{project.data.icon}</span>
-            </div>
-          ) : project.data.category === 'Apps' && !project.data.icon ? (
-            <div class="w-full h-full bg-black rounded-xl p-4 font-mono text-sm text-green-400 border border-zinc-800/50 flex flex-col justify-end min-h-[120px]">
-              <span>$ init {project.id}</span>
-              <span>> Success!</span>
-              <span class="animate-pulse">_</span>
-            </div>
-          ) : null}
+            {/* Image/Visual Container */}
+            <div class="w-full md:w-1/2 aspect-[4/3] md:aspect-square relative rounded-3xl overflow-hidden bg-zinc-900/50 border border-zinc-800/50 flex items-center justify-center group-hover:border-zinc-700 transition-colors duration-500 shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+              
+              {project.data.coverImage ? (
+                <Image 
+                  src={project.data.coverImage} 
+                  alt={project.data.title} 
+                  class="w-[80%] h-[80%] object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-700 ease-out z-0" 
+                  data-no-lightbox 
+                />
+              ) : project.data.category === 'Apps' && project.data.icon ? (
+                <span class="text-9xl group-hover:scale-110 transition-transform duration-700 ease-out">{project.data.icon}</span>
+              ) : project.data.category === 'Apps' && !project.data.icon ? (
+                <div class="w-full h-full bg-black p-8 font-mono text-xl text-green-400 flex flex-col justify-end">
+                  <span>$ init {project.id}</span>
+                  <span>> Success!</span>
+                  <span class="animate-pulse">_</span>
+                </div>
+              ) : null}
 
-          {project.data.category === 'Hardware' && !project.data.coverImage && (
-            <div class="mt-4">
-              <ModelViewer />
-            </div>
-          )}
+              {project.data.category === 'Hardware' && !project.data.coverImage && (
+                <div class="w-full h-full p-8 flex items-center justify-center">
+                  <ModelViewer />
+                </div>
+              )}
 
-          {project.data.category === 'Music' && (
-            <div class="mt-4">
-              <AudioPlayer />
+              {project.data.category === 'Music' && !project.data.coverImage && (
+                <div class="w-full h-full p-8 flex items-center justify-center bg-zinc-950">
+                  <AudioPlayer />
+                </div>
+              )}
             </div>
-          )}
-          </BentoCard>
-        </div>
+
+            {/* Text Content Container */}
+            <div class="w-full md:w-1/2 flex flex-col justify-center">
+              <span class="text-sm font-mono uppercase tracking-widest text-zinc-500 mb-4 flex items-center gap-4">
+                {project.data.category}
+                <div class="h-px bg-zinc-800 flex-grow"></div>
+              </span>
+              <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all duration-300">
+                {project.data.title}
+              </h2>
+              <p class="text-xl text-zinc-400 leading-relaxed mb-8 font-light">
+                {project.data.description}
+              </p>
+              
+              <div class="inline-flex items-center gap-3 text-white font-medium group/btn w-fit">
+                Explore Project
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover/btn:translate-x-2 transition-transform duration-300"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+            </div>
+            
+          </a>
+        </section>
       );
     })}
+  </div>
 
-    {/* About Me Card */}
-    <div class="col-span-1 row-span-2 md:row-span-1 md:col-span-2 lg:col-span-3 bg-zinc-900 border border-zinc-800 rounded-3xl p-6 md:p-12 relative overflow-hidden group hover:border-zinc-500/50 transition-colors duration-500 shadow-lg animate-fade-up" style={`animation-delay: ${allProjects.length * 100}ms`}>
-      <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[100px] rounded-full pointer-events-none group-hover:bg-white/10 transition-colors duration-500"></div>
-      <h2 class="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-4">About Me</h2>
-      <h3 class="text-2xl font-bold text-white mb-4">David Culjak</h3>
-      <p class="text-base md:text-lg text-zinc-400 max-w-3xl leading-relaxed break-words">
+  {/* About Me Section */}
+  <section class="mt-32 md:mt-48 mb-12 relative rounded-[3rem] overflow-hidden bg-zinc-900/40 border border-zinc-800 p-8 md:p-24 text-center group project-section opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <h2 class="text-sm font-mono uppercase tracking-widest text-blue-400 mb-6">Behind the Code</h2>
+      <h3 class="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tighter">David Culjak</h3>
+      <p class="text-xl md:text-2xl text-zinc-400 leading-relaxed font-light">
         I build hardware loop pedals, develop apps and games, and have been making my own music for as long as I can remember. Driven by pure incentive and curiosity, I love bridging the gap between physical hardware and digital software to create unique, immersive experiences.
       </p>
     </div>
-  </BentoGrid>
+  </section>
 </Layout>
+
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-12');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const sections = document.querySelectorAll('.project-section');
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>
