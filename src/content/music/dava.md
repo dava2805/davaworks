@@ -9,7 +9,8 @@ bannerImage: "../../assets/projects/music/banner.png"
 profileImage: "../../assets/projects/music/artist.jpg"
 ---
 
-Welcome to my sonic playground. I've been producing and releasing music under the alias **Dava**.
+Welcome to my sonic playground. I've been producing and releasing music under
+the alias **Dava**.
 
 <div class="not-prose my-12">
   <div class="flex flex-col gap-4">
