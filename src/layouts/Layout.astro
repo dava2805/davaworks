@@ -50,11 +50,61 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
     <ClientRouter />
   </head>
   <body class="bg-zinc-950 text-zinc-300 font-sans antialiased min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white relative overflow-x-hidden">
-    {/* Ambient Glow */}
-    <div class="fixed inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
-      <div class="w-[800px] h-[800px] bg-purple-900/10 rounded-full blur-[120px] mix-blend-screen animate-blob"></div>
-      <div class="w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[100px] mix-blend-screen animate-blob animation-delay-2000 absolute top-[-10%] right-[-10%]"></div>
-    </div>
+    {/* Cinematic Particle Background */}
+    <canvas id="bg-particles" class="fixed inset-0 z-0 pointer-events-none opacity-40"></canvas>
+    <script is:inline>
+      document.addEventListener('astro:page-load', () => {
+        const canvas = document.getElementById('bg-particles');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        const particles = [];
+        const particleCount = 70; // subtle amount
+        
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', resize);
+        resize();
+        
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 1.5 + 0.5,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            alpha: Math.random() * 0.5 + 0.1
+          });
+        }
+        
+        function draw() {
+          ctx.clearRect(0, 0, width, height);
+          
+          particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
+            
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+            ctx.fill();
+          });
+          
+          requestAnimationFrame(draw);
+        }
+        
+        draw();
+      });
+    </script>
 
     <div class="relative z-10 flex flex-col min-h-screen pt-[88px] md:pt-[104px]">
       <div class="fixed top-0 left-0 right-0 z-50 w-full bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50 shadow-sm">
@@ -64,7 +114,10 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
             <span class="text-2xl font-bold tracking-tighter text-white">davaworks.</span>
           </a>
           <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-sm font-medium text-zinc-400">
-            <a href="/" class="hover:text-white transition-colors">Work</a>
+            <a href="/" class="hover:text-white transition-colors">Home</a>
+            <a href="/?filter=Apps" class="hover:text-white transition-colors">Apps</a>
+            <a href="/?filter=Hardware" class="hover:text-white transition-colors">Hardware</a>
+            <a href="/?filter=Music" class="hover:text-white transition-colors">Music</a>
             <a href="mailto:mindthetrack25@gmail.com" class="hover:text-white transition-colors">Contact</a>
           </div>
         </header>

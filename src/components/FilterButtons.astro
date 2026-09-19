@@ -16,14 +16,38 @@ const categories = ['All', 'Apps', 'Hardware', 'Music'];
 <script>
   function setupFilters() {
     const buttons = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.bento-wrapper');
+    const items = document.querySelectorAll('.project-section');
 
-    // Initially active the 'All' button visually
-    const allBtn = Array.from(buttons).find(b => b.getAttribute('data-filter') === 'All');
-    if(allBtn) {
-      allBtn.classList.add('bg-white', 'text-black', 'border-white');
-      allBtn.classList.remove('bg-zinc-900', 'text-zinc-400', 'border-zinc-800');
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialFilter = urlParams.get('filter') || 'All';
+
+    // Initially active the correct button visually
+    let activeBtn = Array.from(buttons).find(b => b.getAttribute('data-filter') === initialFilter);
+    if (!activeBtn) {
+      activeBtn = Array.from(buttons).find(b => b.getAttribute('data-filter') === 'All');
     }
+    
+    if (activeBtn) {
+      activeBtn.classList.add('bg-white', 'text-black', 'border-white');
+      activeBtn.classList.remove('bg-zinc-900', 'text-zinc-400', 'border-zinc-800');
+    }
+
+    // Apply initial filter
+    items.forEach(item => {
+      const itemCategory = item.getAttribute('data-category');
+      if (initialFilter === 'All' || !initialFilter) {
+        (item as HTMLElement).style.display = '';
+        setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
+      } else {
+        if (itemCategory === initialFilter) {
+          (item as HTMLElement).style.display = '';
+          setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
+        } else {
+          (item as HTMLElement).style.opacity = '0';
+          (item as HTMLElement).style.display = 'none';
+        }
+      }
+    });
 
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -39,11 +63,16 @@ const categories = ['All', 'Apps', 'Hardware', 'Music'];
 
         const filter = btn.getAttribute('data-filter');
 
+        // Optional: Update URL without reloading page
+        if (filter) {
+          const newUrl = filter === 'All' ? window.location.pathname : `?filter=${filter}`;
+          window.history.pushState({}, '', newUrl);
+        }
+
         items.forEach(item => {
           const itemCategory = item.getAttribute('data-category');
           if (filter === 'All') {
             (item as HTMLElement).style.display = '';
-            // tiny timeout to trigger fade in
             setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
           } else {
             if (itemCategory === filter) {
@@ -51,7 +80,7 @@ const categories = ['All', 'Apps', 'Hardware', 'Music'];
               setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
             } else {
               (item as HTMLElement).style.opacity = '0';
-              setTimeout(() => { (item as HTMLElement).style.display = 'none'; }, 300); // match transition duration
+              setTimeout(() => { (item as HTMLElement).style.display = 'none'; }, 300);
             }
           }
         });
