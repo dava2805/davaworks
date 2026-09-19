@@ -21,7 +21,7 @@ playStoreLink: "#"
   </div>
 </div>
 
-<script>
+<script is:inline>
   function initInteractiveBanner() {
     const canvas = document.getElementById('interactive-banner');
     if (!canvas || canvas.dataset.initialized) return;
@@ -251,7 +251,7 @@ PixelSync is a powerhouse pixel art editor purpose-built for indie game develope
   <div class="absolute bottom-4 z-30 flex gap-2" id="pxs-indicators"></div>
 </div>
 
-<script>
+<script is:inline>
   function initPixelSyncSlider() {
     const images = [
       'Bild1.png', 'Bild2.png', 'Bild3.png', 'Bild5.png', 

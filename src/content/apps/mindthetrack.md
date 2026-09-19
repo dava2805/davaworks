@@ -11,15 +11,20 @@ playStoreLink: "#"
 
 # Mind the Track!
 
-**Dash forward, leave your trail, and dodge tricky enemies! Face epic bosses, unlock cool skins, and climb the global leaderboard!**
+**Dash forward, leave your trail, and dodge tricky enemies! Face epic bosses,
+unlock cool skins, and climb the global leaderboard!**
 
-Mind the Track! is a thrilling arcade-style mobile game where every move leaves a trail! Take control of a cube that constantly moves forward, leaving connected blocks behind as you navigate through dynamic levels. But watch out! Tricky enemies and powerful bosses will test your reflexes and will try to ruin your run.
+Mind the Track! is a thrilling arcade-style mobile game where every move leaves
+a trail! Take control of a cube that constantly moves forward, leaving connected
+blocks behind as you navigate through dynamic levels. But watch out! Tricky
+enemies and powerful bosses will test your reflexes and will try to ruin your
+run.
 
-![Mind the Track! Gameplay](../../assets/projects/mindthetrack/screenshot1.PNG)
-
-![Mind the Track! Action](../../assets/projects/mindthetrack/screeenshot2.PNG)
-
-![Mind the Track! Leaderboard](../../assets/projects/mindthetrack/screenshot3.PNG)
+<div class="not-prose flex flex-row justify-center gap-4 my-12">
+  <img src="/projects/mindthetrack/screenshot1.PNG" alt="Mind the Track! Gameplay" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/mindthetrack/screeenshot2.PNG" alt="Mind the Track! Action" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/mindthetrack/screenshot3.PNG" alt="Mind the Track! Leaderboard" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+</div>
 
 ## How to Play
 
@@ -29,7 +34,10 @@ Mind the Track! is a thrilling arcade-style mobile game where every move leaves 
 - **Unlock skins** and cosmetics with your collected points.
 - **Compete** on the global leaderboard and climb to the top!
 
-With fast-paced gameplay, increasing difficulty, and exciting boss battles, Mind the Track! is an addictive journey you won’t want to put down. Ready to leave your mark?
+With fast-paced gameplay, increasing difficulty, and exciting boss battles, Mind
+the Track! is an addictive journey you won’t want to put down. Ready to leave
+your mark?
 
 ---
+
 [Privacy Policy](/legal/mindthetrack-privacy)
