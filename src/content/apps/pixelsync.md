@@ -33,37 +33,36 @@ playStoreLink: "#"
 
     function generateMask() {
       try {
-        const offscreen = document.createElement('canvas');
-        offscreen.width = cols * RES;
-        offscreen.height = rows * RES;
-        const octx = offscreen.getContext('2d');
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        octx.fillStyle = 'black';
-        octx.fillRect(0, 0, offscreen.width, offscreen.height);
-        
-        octx.fillStyle = 'white';
-        octx.textAlign = 'center';
-        octx.textBaseline = 'middle';
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         
         let fontSize = Math.floor((cols * RES) / 5);
         if (fontSize > (rows * RES) / 2.5) fontSize = Math.floor((rows * RES) / 2.5);
         if (fontSize < 10) fontSize = 10;
         
-        octx.font = `bold ${fontSize}px sans-serif`;
-        octx.fillText('PixelSync', offscreen.width / 2, offscreen.height / 2);
+        ctx.font = `bold ${fontSize}px sans-serif`;
+        ctx.fillText('PixelSync', canvas.width / 2, canvas.height / 2);
         
-        const imgData = octx.getImageData(0, 0, offscreen.width, offscreen.height).data;
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         targetMask = new Array(cols * rows).fill(0);
         for (let r = 0; r < rows; r++) {
           for (let c = 0; c < cols; c++) {
             const px = c * RES + Math.floor(RES / 2);
             const py = r * RES + Math.floor(RES / 2);
-            const idx = (py * offscreen.width + px) * 4;
+            const idx = (py * canvas.width + px) * 4;
             if (idx >= 0 && idx < imgData.length && imgData[idx] > 127) { 
               targetMask[r * cols + c] = 1;
             }
           }
         }
+        
+        // Restore background
+        ctx.fillStyle = '#09090b';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
       } catch (e) {
         console.error('Mask generation error:', e);
         targetMask = new Array(cols * rows).fill(0);
@@ -89,15 +88,14 @@ playStoreLink: "#"
     }
     window.addEventListener('resize', resize);
     resize();
-    function getColor(age) {
-      if(age === 0) return null;
-      if(age === 1) return '#ffffff';
-      if(age < 4) return '#93c5fd';
-      if(age < 8) return '#3b82f6';
-      if(age < 15) return '#8b5cf6';
-      if(age < 25) return '#6d28d9';
-      return '#4c1d95';
-    }
+      function getColor(age) {
+        if(age === 0) return null;
+        if(age === 1) return '#ffffff';
+        if(age < 4) return '#60a5fa'; // vibrant blue
+        if(age < 10) return '#8b5cf6'; // vibrant purple
+        if(age < 20) return '#d946ef'; // vibrant fuchsia
+        return '#ec4899'; // vibrant pink - never fades to black
+      }
     function update() {
       for(let i=0; i<grid.length; i++) {
         const c = i % cols;
