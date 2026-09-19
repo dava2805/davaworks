@@ -14,15 +14,7 @@ playStoreLink: "#"
 **A professional-grade pixel art and animation suite in your pocket. Zero ads. Zero costs. No accounts required.**
 
 <div class="not-prose w-full max-w-4xl mx-auto my-12 relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 bg-[#09090b]">
-  <div class="absolute top-4 left-6 z-10 pointer-events-none flex flex-col">
-    <span class="text-xl font-bold tracking-wider text-white/90 drop-shadow-md">PixelSync</span>
-    <span class="text-[10px] font-mono text-zinc-400 tracking-[0.2em] uppercase">Interactive Canvas</span>
-  </div>
   <canvas id="px-gol" class="absolute inset-0 w-full h-full cursor-crosshair touch-none" style="image-rendering: pixelated;"></canvas>
-  <div class="absolute bottom-4 right-6 z-10 pointer-events-none flex gap-2 items-center">
-    <div class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
-    <span class="text-[10px] font-mono text-blue-400/80">Draw or swipe to interact</span>
-  </div>
 </div>
 <script is:inline>
   function initGOLBanner() {
@@ -93,12 +85,18 @@ playStoreLink: "#"
     function render() {
       ctx.fillStyle = '#09090b';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#27272a';
-      for(let r=0; r<rows; r++) {
-        for(let c=0; c<cols; c++) {
-          ctx.fillRect(c * RES + RES/2 - 1, r * RES + RES/2 - 1, 2, 2);
-        }
+      ctx.strokeStyle = '#18181b';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for(let r=0; r<=rows; r++) {
+        ctx.moveTo(0, r * RES);
+        ctx.lineTo(canvas.width, r * RES);
       }
+      for(let c=0; c<=cols; c++) {
+        ctx.moveTo(c * RES, 0);
+        ctx.lineTo(c * RES, canvas.height);
+      }
+      ctx.stroke();
       for(let i=0; i<grid.length; i++) {
         if(grid[i] > 0) {
           const c = i % cols;
