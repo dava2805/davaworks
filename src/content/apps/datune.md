@@ -6,7 +6,6 @@ span: 2
 featured: true
 category: "Apps"
 appStoreLink: "#"
-playStoreLink: "#"
 ---
 
 # DaTune
@@ -24,7 +23,7 @@ DaTune is a design-forward creative space that adapts to your style.
   <!-- Visual Particle Tuner -->
   <div class="flex flex-col md:flex-row items-center gap-8">
     <div class="flex-1">
-      <h3 class="text-2xl font-bold text-white mb-4">Visual Particle Tuner</h3>
+      <h3 class="text-xl font-bold text-white mb-4">Visual Particle Tuner</h3>
       <p class="text-zinc-400">Tuning, reimagined. Dynamic particles flow into alignment as you reach perfect pitch, turning accuracy into an intuitive, almost meditative visual experience.</p>
     </div>
     <div class="flex-1 flex justify-center">
@@ -35,7 +34,7 @@ DaTune is a design-forward creative space that adapts to your style.
   <!-- Hybrid Metronome -->
   <div class="flex flex-col md:flex-row-reverse items-center gap-8">
     <div class="flex-1">
-      <h3 class="text-2xl font-bold text-white mb-4">Hybrid Metronome</h3>
+      <h3 class="text-xl font-bold text-white mb-4">Hybrid Metronome</h3>
       <p class="text-zinc-400">Go beyond the beep. Engage with rhythm through a unique visual interface, or import audio from your videos and files to build custom click tracks that fit your music.</p>
     </div>
     <div class="flex-1 flex justify-center">
@@ -46,7 +45,7 @@ DaTune is a design-forward creative space that adapts to your style.
   <!-- Creative Looper -->
   <div class="flex flex-col md:flex-row items-center gap-8">
     <div class="flex-1">
-      <h3 class="text-2xl font-bold text-white mb-4">Creative Looper</h3>
+      <h3 class="text-xl font-bold text-white mb-4">Creative Looper</h3>
       <p class="text-zinc-400">Capture ideas the instant they surface. Quickly record and layer sounds into groups, sequence them across four-bar phrases, or overdub freely as inspiration unfolds. From saving practice breakthroughs to exploring creative bursts—or simply going with the flow—the looper keeps up, with flexible noise gate modes for clean, effortless recording.</p>
     </div>
     <div class="flex-1 flex justify-center">
@@ -57,7 +56,7 @@ DaTune is a design-forward creative space that adapts to your style.
   <!-- Smart Memos & Auto-Analysis -->
   <div class="flex flex-col md:flex-row-reverse items-center gap-8">
     <div class="flex-1">
-      <h3 class="text-2xl font-bold text-white mb-4">Smart Memos & Auto-Analysis</h3>
+      <h3 class="text-xl font-bold text-white mb-4">Smart Memos & Auto-Analysis</h3>
       <p class="text-zinc-400">Record and layer sounds with our new phase-cancellation engine, letting you overdub backing tracks out loud—no headphones required (currently in beta). DaTune automatically detects your global BPM, Key, and Chord Progressions. View your chords mapped instantly to an interactive "sheet music" waveform, where you can visually trim loops or attach session notes so you never lose the magic of the moment.</p>
     </div>
     <div class="flex-1 flex justify-center">

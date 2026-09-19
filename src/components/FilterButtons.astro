@@ -16,7 +16,7 @@ const categories = ['All', 'Apps', 'Hardware', 'Music'];
 <script>
   function setupFilters() {
     const buttons = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.bento-item');
+    const items = document.querySelectorAll('.bento-wrapper');
 
     // Initially active the 'All' button visually
     const allBtn = Array.from(buttons).find(b => b.getAttribute('data-filter') === 'All');
@@ -40,12 +40,13 @@ const categories = ['All', 'Apps', 'Hardware', 'Music'];
         const filter = btn.getAttribute('data-filter');
 
         items.forEach(item => {
+          const itemCategory = item.getAttribute('data-category');
           if (filter === 'All') {
             (item as HTMLElement).style.display = '';
             // tiny timeout to trigger fade in
             setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
           } else {
-            if (item.classList.contains(filter as string)) {
+            if (itemCategory === filter) {
               (item as HTMLElement).style.display = '';
               setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
             } else {

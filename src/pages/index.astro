@@ -31,7 +31,7 @@ const allProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured
       const href = `/${collectionName}/${project.id}`;
 
       return (
-        <div class="animate-fade-up" style={`animation-delay: ${index * 100}ms`}>
+        <div class="animate-fade-up bento-wrapper" data-category={project.data.category} style={`animation-delay: ${index * 100}ms`}>
           <BentoCard 
             title={project.data.title} 
             category={project.data.category} 

@@ -5,16 +5,13 @@ span: 1
 featured: true
 category: "Music"
 coverImage: "../../assets/projects/music/artist.jpg"
+bannerImage: "../../assets/projects/music/banner.png"
+profileImage: "../../assets/projects/music/artist.jpg"
 ---
-
-<img src="/projects/music/banner.png" alt="Dava Banner" class="w-full h-32 md:h-48 object-cover rounded-2xl mb-12 shadow-xl border border-zinc-800" />
 
 Welcome to my sonic playground. I've been producing and releasing music under the alias **Dava**.
 
-<div class="not-prose flex flex-col md:flex-row gap-6 my-12 items-center">
-  <div class="flex-shrink-0">
-    <img src="/projects/music/artist.jpg" alt="Dava Artist" class="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full shadow-2xl border-4 border-zinc-900" />
-  </div>
+<div class="not-prose my-12">
   <div class="flex flex-col gap-4">
     <h3 class="text-2xl font-bold text-white">Listen Now</h3>
     <p class="text-zinc-400">Stream my latest releases, EPs, and experiments directly on your favorite platform.</p>

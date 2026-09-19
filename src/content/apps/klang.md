@@ -17,28 +17,28 @@ Klang is a revolutionary sound collector and beat maker for the modern creator. 
 
 Whether you are a lo-fi producer, a beatmaker, or a content creator looking to score your next reel, Klang turns your phone into an instantly playable, highly visual musical instrument.
 
-<div class="not-prose relative w-[260px] h-[260px] md:w-[450px] md:h-[450px] mx-auto my-20 [perspective:1000px]">
-<div id="klang-wheel" class="w-full h-full relative will-change-transform">
+<div class="not-prose relative w-[320px] h-[320px] md:w-[600px] md:h-[600px] mx-auto my-20 [perspective:1000px]">
+<div id="klang-wheel" class="w-full h-full relative will-change-transform transform-origin-center">
 <!-- Center aesthetic glow -->
-<div class="absolute inset-0 m-auto w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute inset-0 m-auto w-40 h-40 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
 
 <!-- Image 1: Top Left -->
-<div class="klang-child absolute top-0 left-0 w-28 h-28 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
+<div class="klang-child absolute top-0 left-0 w-36 h-36 md:w-72 md:h-72 flex items-center justify-center pointer-events-none">
 <img src="/projects/klang/IMG_2995.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 2: Top Right -->
-<div class="klang-child absolute top-0 right-0 w-28 h-28 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
+<div class="klang-child absolute top-0 right-0 w-36 h-36 md:w-72 md:h-72 flex items-center justify-center pointer-events-none">
 <img src="/projects/klang/IMG_2997.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 3: Bottom Left -->
-<div class="klang-child absolute bottom-0 left-0 w-28 h-28 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
+<div class="klang-child absolute bottom-0 left-0 w-36 h-36 md:w-72 md:h-72 flex items-center justify-center pointer-events-none">
 <img src="/projects/klang/IMG_2998.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 4: Bottom Right -->
-<div class="klang-child absolute bottom-0 right-0 w-28 h-28 md:w-52 md:h-52 flex items-center justify-center pointer-events-none">
+<div class="klang-child absolute bottom-0 right-0 w-36 h-36 md:w-72 md:h-72 flex items-center justify-center pointer-events-none">
 <img src="/projects/klang/IMG_3002.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 </div>
@@ -53,17 +53,25 @@ Whether you are a lo-fi producer, a beatmaker, or a content creator looking to s
     
     let currentRotation = 0;
     let targetRotation = 0;
+    let currentScale = 1;
+    let targetScale = 1;
+    let currentOpacity = 1;
+    let targetOpacity = 1;
     let ticking = false;
 
     function update() {
       currentRotation += (targetRotation - currentRotation) * 0.08;
-      wheel.style.transform = `rotate(${currentRotation}deg)`;
+      currentScale += (targetScale - currentScale) * 0.08;
+      currentOpacity += (targetOpacity - currentOpacity) * 0.08;
+      
+      wheel.style.transform = `rotate(${currentRotation}deg) scale(${currentScale})`;
+      wheel.style.opacity = currentOpacity.toString();
       
       children.forEach(child => {
         child.style.transform = `rotate(${-currentRotation}deg)`;
       });
       
-      if (Math.abs(targetRotation - currentRotation) > 0.01) {
+      if (Math.abs(targetRotation - currentRotation) > 0.01 || Math.abs(targetScale - currentScale) > 0.005) {
         requestAnimationFrame(update);
       } else {
         ticking = false;
@@ -72,6 +80,17 @@ Whether you are a lo-fi producer, a beatmaker, or a content creator looking to s
 
     window.addEventListener('scroll', () => {
       targetRotation = window.scrollY * 0.25;
+      
+      const rect = wheel.getBoundingClientRect();
+      const wheelCenterY = rect.top + rect.height / 2;
+      const viewportCenterY = window.innerHeight / 2;
+      const distanceFromCenter = Math.abs(viewportCenterY - wheelCenterY);
+      
+      const normalizedDist = Math.min(distanceFromCenter / (window.innerHeight * 0.7), 1);
+      
+      targetScale = 1 - (normalizedDist * 0.4);
+      targetOpacity = 1 - (normalizedDist * 0.8);
+
       if (!ticking) {
         requestAnimationFrame(update);
         ticking = true;
