@@ -34,8 +34,8 @@ To-do lists breed hoarding and guilt. Tabula is built on the concept of Tabula R
 - **AI Brain Dump (BYOK):** Got too much on your mind? Speak your chaotic thoughts into the app and let AI instantly structure them into actionable project tasks. Bring Your Own Key (BYOK) keeps you in total control of your data and usage.
 - **"Life Happens" Mode:** A one-day pause button for the daily wipe when emergencies strike.
 
-### TABULA ON MAC HAS ALWAYS ON TOP-MODE. 
-**so you NEVER LOSE TRACK OF WHAT MATTERS.**
+### Tabula on Mac has Always on Top-Mode. 
+**Never lose track of what matters.**
 
 ![Tabula Always on Top Mac App](../../assets/projects/tabula/mac_always_on_top.png)
 

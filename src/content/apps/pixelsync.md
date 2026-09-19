@@ -65,6 +65,10 @@ playStoreLink: "#"
 
     function resize() {
       const rect = canvas.parentElement.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) {
+        requestAnimationFrame(resize);
+        return;
+      }
       canvas.width = rect.width;
       canvas.height = rect.height;
       cols = Math.ceil(canvas.width / RES);
@@ -168,6 +172,7 @@ playStoreLink: "#"
     let lastTime = 0;
     function loop(time) {
       requestAnimationFrame(loop);
+      if (!cols || !rows) return;
       if (lastActivityTime === null) lastActivityTime = time;
       if(time - lastTime < 100) return;
       lastTime = time;
