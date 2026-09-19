@@ -17,25 +17,38 @@ const { Content } = await render(item);
 
 <Layout title={item.data.title} description={item.data.description} image={item.data.coverImage?.src}>
   <div class="max-w-3xl mx-auto">
-    {item.data.bannerImage && (
-      <div class="w-full h-48 md:h-64 mb-12 rounded-3xl overflow-hidden shadow-2xl border border-zinc-800 relative group">
-        <Image src={item.data.bannerImage} alt={`${item.data.title} Banner`} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+    {item.data.bannerImage ? (
+      <div class="w-full min-h-[300px] mb-12 rounded-3xl overflow-hidden shadow-2xl border border-zinc-800 relative group flex items-end">
+        <Image src={item.data.bannerImage} alt={`${item.data.title} Banner`} class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/60 to-transparent opacity-90"></div>
+        
+        <div class="relative z-10 w-full p-6 md:p-10 flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-8">
+          {item.data.profileImage && (
+            <div class="flex-shrink-0 relative">
+              <div class="absolute inset-0 bg-white/20 rounded-full blur-xl"></div>
+              <Image src={item.data.profileImage} alt={item.data.title} class="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full shadow-2xl border-4 border-zinc-900 relative z-10" />
+            </div>
+          )}
+          <div class="text-center md:text-left mb-2 md:mb-4">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-2 text-white">{item.data.title}</h1>
+            <p class="text-lg md:text-xl text-zinc-300 font-medium">{item.data.description}</p>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div class="mb-12 flex flex-col md:flex-row items-center md:items-start gap-8">
+        {item.data.profileImage && (
+          <div class="flex-shrink-0 relative">
+            <div class="absolute inset-0 bg-white/20 rounded-full blur-2xl"></div>
+            <Image src={item.data.profileImage} alt={item.data.title} class="w-40 h-40 md:w-56 md:h-56 object-cover rounded-full shadow-2xl border-4 border-zinc-900 relative z-10" />
+          </div>
+        )}
+        <div class="flex-grow text-center md:text-left md:mt-8">
+          <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">{item.data.title}</h1>
+          <p class="text-xl text-zinc-400">{item.data.description}</p>
+        </div>
       </div>
     )}
-
-    <div class="mb-12 flex flex-col md:flex-row items-center md:items-start gap-8">
-      {item.data.profileImage && (
-        <div class="flex-shrink-0 relative">
-          <div class="absolute inset-0 bg-white/20 rounded-full blur-2xl"></div>
-          <Image src={item.data.profileImage} alt={item.data.title} class="w-40 h-40 md:w-56 md:h-56 object-cover rounded-full shadow-2xl border-4 border-zinc-900 relative z-10" />
-        </div>
-      )}
-      <div class="flex-grow text-center md:text-left md:mt-8">
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">{item.data.title}</h1>
-        <p class="text-xl text-zinc-400">{item.data.description}</p>
-      </div>
-    </div>
     
     <article class="prose prose-invert prose-zinc max-w-none prose-headings:font-bold prose-a:text-white hover:prose-a:text-zinc-300">
       <Content />

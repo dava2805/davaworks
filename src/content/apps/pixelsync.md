@@ -1,6 +1,6 @@
 ---
 title: "PixelSync"
-description: "Pro pixel art creation & animation. Sync directly to Unity & Godot via Wi-Fi."
+description: "Pro pixel art suite. Sync live to Unity & Godot, drop art on friends' home screen widgets, and collaborate in real-time! 100% free with zero ads. No accounts required."
 coverImage: "../../assets/projects/pixelsync_app_icon_transparent.png"
 span: 1
 featured: true
