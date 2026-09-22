@@ -42,7 +42,7 @@ To-do lists breed hoarding and guilt. Tabula is built on the concept of Tabula R
 
 ## Privacy & Ownership First
 Tabula operates entirely on a privacy-first, decentralized model. We don't want your data.
-- **Zero Subscriptions, Zero Ads:** Tabula is completely free and lightning-fast.
+- **Zero Subscriptions, Zero Ads:** The core app is completely free forever, with an optional one-time purchase to unlock unlimited boards and dynamic auto-themes.
 - **Local-First Database:** Your tasks, notes, and history live on your physical device. We have no access to your lists.
 - **Your Own Cloud:** Effortless, secure two-way syncing across devices using your personal Google Drive.
 - **Export Anything:** Full data ownership means you can export your entire history and project data to CSV instantly.
