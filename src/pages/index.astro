@@ -11,9 +11,17 @@ const hardware = await getCollection('hardware');
 const music = await getCollection('music');
 
 const allProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured);
+
+const personSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "David Culjak",
+  "url": "https://davaworks.com",
+  "jobTitle": "Developer and Creator"
+});
 ---
 
-<Layout title="Home">
+<Layout title="Home" schema={personSchema}>
   {/* Hero Section */}
   <section class="min-h-[70vh] flex flex-col justify-center items-center text-center relative mb-24 mt-[-88px] md:mt-[-104px] pt-[88px] md:pt-[104px]">
     <div class="relative z-10 max-w-4xl mx-auto px-6 animate-fade-up">

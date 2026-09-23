@@ -6,12 +6,14 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  schema?: string;
 }
 
 const { 
   title, 
   description = "Crafting digital and physical experiences. Apps, Hardware, Music.",
-  image = "/logo.jpg" 
+  image = "/logo.jpg",
+  schema
 } = Astro.props;
 
 // Ensure image is an absolute URL for Open Graph/Twitter if it's a relative path starting with /
@@ -48,6 +50,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <title>{title} | Davaworks</title>
+    {schema && <script type="application/ld+json" set:html={schema} />}
     <ClientRouter />
   </head>
   <body class="bg-zinc-950 text-zinc-300 font-sans antialiased min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white relative overflow-x-hidden">
@@ -83,22 +86,25 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
         }
         
         function draw() {
-          ctx.clearRect(0, 0, width, height);
-          
-          particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
+          // Pause drawing if scrolled past the viewport to save resources
+          if (window.scrollY < window.innerHeight) {
+            ctx.clearRect(0, 0, width, height);
             
-            if (p.x < 0) p.x = width;
-            if (p.x > width) p.x = 0;
-            if (p.y < 0) p.y = height;
-            if (p.y > height) p.y = 0;
-            
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-            ctx.fill();
-          });
+            particles.forEach(p => {
+              p.x += p.vx;
+              p.y += p.vy;
+              
+              if (p.x < 0) p.x = width;
+              if (p.x > width) p.x = 0;
+              if (p.y < 0) p.y = height;
+              if (p.y > height) p.y = 0;
+              
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+              ctx.fill();
+            });
+          }
           
           requestAnimationFrame(draw);
         }

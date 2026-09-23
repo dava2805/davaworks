@@ -13,9 +13,23 @@ export async function getStaticPaths() {
 
 const { app } = Astro.props;
 const { Content } = await render(app);
+
+const softwareSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": app.data.title,
+  "description": app.data.description,
+  "applicationCategory": "Application",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+});
 ---
 
-<Layout title={app.data.title} description={app.data.description} image={app.data.coverImage?.src}>
+<Layout title={app.data.title} description={app.data.description} image={app.data.coverImage?.src} schema={softwareSchema}>
   <div class="max-w-3xl mx-auto">
     <div class="mb-12">
       {app.data.icon && <div class="text-6xl mb-6">{app.data.icon}</div>}

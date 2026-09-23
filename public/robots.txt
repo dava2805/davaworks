@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://davaworks.com/sitemap-index.xml
