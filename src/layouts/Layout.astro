@@ -28,9 +28,10 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=5" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=5" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png?v=5" />
+    <link rel="apple-touch-icon" href="/favicon.png?v=5" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
     
@@ -241,6 +242,34 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
             section.classList.add('opacity-0', 'translate-y-12', 'transition-all', 'duration-1000', 'ease-out');
           }
           observer.observe(section);
+        });
+      });
+
+      // Prevent double load on home page when clicking category links
+      document.addEventListener('astro:page-load', () => {
+        const navLinks = document.querySelectorAll('header a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            const url = new URL(link.href);
+            // If we are currently on the home page and clicking a filter link
+            if (window.location.pathname === '/' && url.pathname === '/' && url.searchParams.has('filter')) {
+              e.preventDefault();
+              const filter = url.searchParams.get('filter');
+              
+              const filterBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+              if (filterBtn) {
+                filterBtn.click();
+              }
+              
+              const target = document.getElementById('projects');
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+              }
+              
+              // Ensure the URL updates to include the hash
+              window.history.pushState({}, '', link.href);
+            }
+          });
         });
       });
     </script>
