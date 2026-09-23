@@ -3,7 +3,6 @@ title: "Privacy Policy for Neun"
 coverImage: "../../assets/projects/neun_icon.png"
 ---
 
-# Privacy Policy
 **Effective Date:** February 22, 2026
 
 Your privacy is important to us. This Privacy Policy explains how data is handled when you play Neun: Roguelike Puzzle ("the Game").

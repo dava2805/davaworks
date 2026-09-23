@@ -11,7 +11,6 @@ discordLink: "https://discord.gg/FzcA55UpBC"
 subcategory: "GRAPHICS"
 ---
 
-# PixelSync
 
 **A professional-grade pixel art and animation suite in your pocket. Zero ads.
 Zero costs. No accounts required.**

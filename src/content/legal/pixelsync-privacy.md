@@ -3,7 +3,6 @@ title: "Privacy Policy for PixelSync"
 coverImage: "../../assets/projects/pixelsync_app_icon_transparent.png"
 ---
 
-# Privacy Policy
 **Last Updated:** March 2026
 
 At PixelSync, we believe your art should be yours, and your data should stay private. This policy explains how we handle information when you use our app, including our collaborative features and performance tools.

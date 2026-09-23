@@ -2,7 +2,6 @@
 title: "Legal Notice / Impressum"
 ---
 
-# Legal Notice / Impressum
 
 ## Information in accordance with § 5 TMG
 

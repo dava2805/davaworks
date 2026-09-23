@@ -9,7 +9,6 @@ appStoreLink: "https://apps.apple.com/de/app/datune-tuner-metronom-loop/id675544
 subcategory: "MUSIC"
 ---
 
-# DaTune
 
 **Less interference. More inspiration.**
 

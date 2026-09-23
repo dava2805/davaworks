@@ -3,7 +3,6 @@ title: "Privacy Policy for Tabula"
 coverImage: "../../assets/projects/tabula_icon.002.png"
 ---
 
-# Privacy Policy for Tabula
 **Last Updated:** June 27, 2026
 
 ## 1. Introduction 

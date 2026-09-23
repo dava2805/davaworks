@@ -58,10 +58,15 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
     {/* Cinematic Particle Background */}
     <canvas id="bg-particles" class="fixed inset-0 z-0 pointer-events-none opacity-50"></canvas>
     <script is:inline>
+      // Keep track of the animation ID to cancel it on page changes
+      let bgAnimationId;
+      
       document.addEventListener('astro:page-load', () => {
         const canvas = document.getElementById('bg-particles');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        
+        if (bgAnimationId) cancelAnimationFrame(bgAnimationId);
         
         let width, height;
         const particles = [];
@@ -109,7 +114,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
             });
           }
           
-          requestAnimationFrame(draw);
+          bgAnimationId = requestAnimationFrame(draw);
         }
         
         draw();
@@ -254,22 +259,29 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
           link.addEventListener('click', (e) => {
             const url = new URL(link.href);
             // If we are currently on the home page and clicking a filter link
-            if (window.location.pathname === '/' && url.pathname === '/' && url.searchParams.has('filter')) {
-              e.preventDefault();
-              const filter = url.searchParams.get('filter');
-              
-              const filterBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
-              if (filterBtn) {
-                filterBtn.click();
+            if (window.location.pathname === '/' && url.pathname === '/') {
+              if (url.searchParams.has('filter')) {
+                e.preventDefault();
+                const filter = url.searchParams.get('filter');
+                
+                const filterBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+                if (filterBtn) {
+                  filterBtn.click();
+                }
+                
+                const target = document.getElementById('projects');
+                if (target) {
+                  target.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Ensure the URL updates to include the hash
+                window.history.pushState({}, '', link.href);
+              } else if (!url.hash && !url.search) {
+                // Clicking the main title / logo when already on home page
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.history.pushState({}, '', '/');
               }
-              
-              const target = document.getElementById('projects');
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-              }
-              
-              // Ensure the URL updates to include the hash
-              window.history.pushState({}, '', link.href);
             }
           });
         });

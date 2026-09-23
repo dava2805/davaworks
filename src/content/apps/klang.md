@@ -10,7 +10,6 @@ playStoreLink: "#"
 subcategory: "MUSIC"
 ---
 
-# KLANG: The Audiovisual Pocket Studio
 
 **Why just make a beat when you can make a music video?** 
 

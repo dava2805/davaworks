@@ -8,7 +8,6 @@ coverImage: "../../assets/projects/datune/LoopDaTune.jpg"
 subcategory: "MUSIC"
 ---
 
-# LoopDaTune (LDT) Device
 
 *Currently in development.*
 

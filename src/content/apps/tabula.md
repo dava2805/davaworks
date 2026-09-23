@@ -10,7 +10,6 @@ playStoreLink: "#"
 subcategory: "PRODUCTIVITY"
 ---
 
-# Tabula
 
 **Stop Planning. Start Executing.**
 

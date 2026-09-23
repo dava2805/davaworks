@@ -10,7 +10,6 @@ playStoreLink: "#"
 subcategory: "GAME"
 ---
 
-# Neun
 
 **Outsmart the grid in this roguelike puzzle game!**
 

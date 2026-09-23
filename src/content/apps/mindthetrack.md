@@ -10,7 +10,6 @@ playStoreLink: "https://play.google.com/store/apps/details?id=com.davaworks.mind
 subcategory: "GAME"
 ---
 
-# Mind the Track!
 
 **Dash forward, leave your trail, and dodge tricky enemies! Face epic bosses,
 unlock cool skins, and climb the global leaderboard!**

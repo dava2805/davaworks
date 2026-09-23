@@ -2,7 +2,6 @@
 title: "Mind the Track! Privacy Policy"
 ---
 
-# Privacy Policy
 
 **Effective Date: July 16, 2026**
 

@@ -3,7 +3,6 @@ title: "Terms of Service for PixelSync"
 coverImage: "../../assets/projects/pixelsync_app_icon_transparent.png"
 ---
 
-# Terms of Service
 **Last Updated:** September 2026
 
 ## 1. Acceptance of Terms 

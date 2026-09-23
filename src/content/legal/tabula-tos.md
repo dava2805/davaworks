@@ -3,7 +3,6 @@ title: "Terms of Service for Tabula"
 coverImage: "../../assets/projects/tabula_icon.002.png"
 ---
 
-# Terms of Service for Tabula
 **Last Updated:** September 14, 2026
 
 Welcome to Tabula: Kanban & Daily Focus ("Tabula," "we," "our," or "us"). By downloading, accessing, or using the Tabula mobile application (the "App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the App.
