@@ -23,6 +23,7 @@ const projectSchema = ({ image }: any) => z.object({
   icon: z.string().optional(),
   appStoreLink: z.string().optional(),
   playStoreLink: z.string().optional(),
+  discordLink: z.string().optional(),
   subcategory: z.string().optional(),
 });
 

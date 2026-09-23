@@ -7,6 +7,7 @@ featured: true
 category: "Apps"
 appStoreLink: "#"
 playStoreLink: "#"
+discordLink: "https://discord.gg/FzcA55UpBC"
 subcategory: "GRAPHICS"
 ---
 
