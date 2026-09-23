@@ -56,7 +56,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
   </head>
   <body class="bg-zinc-950 text-zinc-300 font-sans antialiased min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white relative overflow-x-hidden">
     {/* Cinematic Particle Background */}
-    <canvas id="bg-particles" class="fixed inset-0 z-0 pointer-events-none opacity-40"></canvas>
+    <canvas id="bg-particles" class="fixed inset-0 z-0 pointer-events-none opacity-50"></canvas>
     <script is:inline>
       document.addEventListener('astro:page-load', () => {
         const canvas = document.getElementById('bg-particles');
@@ -79,7 +79,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
           particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            radius: Math.random() * 1.5 + 0.5,
+            radius: Math.random() * 2.0 + 1.0,
             vx: (Math.random() - 0.5) * 0.3,
             vy: (Math.random() - 0.5) * 0.3,
             alpha: Math.random() * 0.5 + 0.1
@@ -103,6 +103,8 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
               ctx.beginPath();
               ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
               ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+              ctx.shadowBlur = p.radius * 4;
+              ctx.shadowColor = `rgba(255, 255, 255, ${p.alpha})`;
               ctx.fill();
             });
           }
