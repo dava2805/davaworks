@@ -37,13 +37,12 @@ const categories = ['All', 'Apps', 'Hardware', 'Music'];
       const itemCategory = item.getAttribute('data-category');
       if (initialFilter === 'All' || !initialFilter) {
         (item as HTMLElement).style.display = '';
-        setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
+        // Removed eager opacity=1 to let IntersectionObserver handle initial reveal
       } else {
         if (itemCategory === initialFilter) {
           (item as HTMLElement).style.display = '';
-          setTimeout(() => { (item as HTMLElement).style.opacity = '1'; }, 10);
+          // Removed eager opacity=1 to let IntersectionObserver handle initial reveal
         } else {
-          (item as HTMLElement).style.opacity = '0';
           (item as HTMLElement).style.display = 'none';
         }
       }
