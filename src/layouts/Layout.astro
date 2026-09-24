@@ -194,8 +194,8 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
         }, 300);
       };
 
-      // Set up global event listeners exactly once
-      document.body.addEventListener('click', (e) => {
+      // Set up global event listeners exactly once on document (so it survives view transitions)
+      document.addEventListener('click', (e) => {
         const target = e.target;
         
         if (target.tagName === 'IMG') {
