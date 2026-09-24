@@ -1,7 +1,7 @@
 ---
 title: "Neun"
 description: "Outsmart the grid in this roguelike puzzle game!"
-coverImage: "../../assets/projects/neun_icon.jpg"
+coverImage: "../../assets/projects/neun_icon.png"
 span: 1
 featured: true
 category: "Apps"

@@ -1,7 +1,7 @@
 ---
 title: "Mind the Track!"
 description: "Dash forward, leave your trail, and dodge tricky enemies!"
-coverImage: "../../assets/projects/mindthetrack/logo.jpg"
+coverImage: "../../assets/projects/mindthetrack/logo.png"
 span: 1
 featured: true
 category: "Apps"

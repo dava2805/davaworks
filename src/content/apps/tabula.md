@@ -1,7 +1,7 @@
 ---
 title: "Tabula"
 description: "A minimalist execution engine that forces discipline and eliminates procrastination."
-coverImage: "../../assets/projects/tabula_icon.002.jpg"
+coverImage: "../../assets/projects/tabula_icon.002.png"
 span: 2
 featured: true
 category: "Apps"
