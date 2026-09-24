@@ -24,22 +24,22 @@ Whether you are a lo-fi producer, a beatmaker, or a content creator looking to s
 
 <!-- Image 1: Top Left -->
 <div class="klang-child absolute top-0 left-0 w-36 h-36 md:w-72 md:h-72 flex items-center justify-center pointer-events-none">
-<img src="/projects/klang/IMG_2995.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
+<img src="/projects/klang/IMG_2995.jpg" fetchpriority="high" loading="eager" decoding="async" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 2: Top Right -->
 <div class="klang-child absolute top-0 right-0 w-36 h-36 md:w-72 md:h-72 flex items-center justify-center pointer-events-none">
-<img src="/projects/klang/IMG_2997.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
+<img src="/projects/klang/IMG_2997.jpg" fetchpriority="high" loading="eager" decoding="async" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 3: Bottom Left -->
 <div class="klang-child absolute bottom-0 left-0 w-36 h-36 md:w-72 md:h-72 flex items-center justify-center pointer-events-none">
-<img src="/projects/klang/IMG_2998.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
+<img src="/projects/klang/IMG_2998.jpg" fetchpriority="high" loading="eager" decoding="async" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 
 <!-- Image 4: Bottom Right -->
 <div class="klang-child absolute bottom-0 right-0 w-36 h-36 md:w-72 md:h-72 flex items-center justify-center pointer-events-none">
-<img src="/projects/klang/IMG_3002.PNG" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
+<img src="/projects/klang/IMG_3002.jpg" fetchpriority="high" loading="eager" decoding="async" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-zinc-900/80 pointer-events-auto hover:scale-110 transition-transform duration-300" />
 </div>
 </div>
 </div>

@@ -57,8 +57,8 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
   <body class="bg-zinc-950 text-zinc-300 font-sans antialiased min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white relative overflow-x-hidden">
     {/* Cinematic Particle Background */}
     <canvas id="bg-particles" transition:persist class="fixed inset-0 z-0 pointer-events-none opacity-50"></canvas>
-    <script is:inline>
-      // Keep track of the animation ID to cancel it on page changes
+    <script>
+      // Background animation state
       let bgAnimationId;
       let bgAnimationInitialized = false;
       
@@ -162,89 +162,99 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
       <img id="lightbox-img" src="" alt="Zoomed image" class="max-w-[95vw] max-h-[95vh] object-contain rounded-xl shadow-2xl scale-95 transition-transform duration-300" />
     </div>
 
-    <script is:inline>
-      document.addEventListener('astro:page-load', () => {
-        const lightbox = document.getElementById('global-lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const closeBtn = document.getElementById('lightbox-close');
+    <script>
+      // Global Lightbox State
+      let isOpen = false;
+      let lightbox = null;
+      let lightboxImg = null;
+      
+      const openLightbox = (src, alt) => {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || 'Zoomed image';
+        lightbox.classList.remove('opacity-0', 'pointer-events-none');
+        lightbox.classList.add('opacity-100', 'pointer-events-auto');
+        lightboxImg.classList.remove('scale-95');
+        lightboxImg.classList.add('scale-100');
+        isOpen = true;
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeLightbox = () => {
+        if (!isOpen || !lightbox || !lightboxImg) return;
+        lightbox.classList.remove('opacity-100', 'pointer-events-auto');
+        lightbox.classList.add('opacity-0', 'pointer-events-none');
+        lightboxImg.classList.remove('scale-100');
+        lightboxImg.classList.add('scale-95');
+        isOpen = false;
+        document.body.style.overflow = '';
         
-        if (!lightbox || !lightboxImg || !closeBtn) return;
+        setTimeout(() => {
+          if (!isOpen && lightboxImg) lightboxImg.src = '';
+        }, 300);
+      };
 
-        let isOpen = false;
-
-        const openLightbox = (src, alt) => {
-          lightboxImg.src = src;
-          lightboxImg.alt = alt || 'Zoomed image';
-          lightbox.classList.remove('opacity-0', 'pointer-events-none');
-          lightbox.classList.add('opacity-100', 'pointer-events-auto');
-          lightboxImg.classList.remove('scale-95');
-          lightboxImg.classList.add('scale-100');
-          isOpen = true;
-          document.body.style.overflow = 'hidden';
-        };
-
-        const closeLightbox = () => {
-          if (!isOpen) return;
-          lightbox.classList.remove('opacity-100', 'pointer-events-auto');
-          lightbox.classList.add('opacity-0', 'pointer-events-none');
-          lightboxImg.classList.remove('scale-100');
-          lightboxImg.classList.add('scale-95');
-          isOpen = false;
-          document.body.style.overflow = '';
+      // Set up global event listeners exactly once
+      document.body.addEventListener('click', (e) => {
+        const target = e.target;
+        
+        if (target.tagName === 'IMG') {
+          // Ignore logo, explicitly ignored images, or images inside functional links outside of prose
+          if (
+            target.closest('header') || 
+            (target.closest('a') && !target.closest('.prose')) ||
+            target.hasAttribute('data-no-lightbox')
+          ) {
+            return;
+          }
           
-          setTimeout(() => {
-            if (!isOpen) lightboxImg.src = '';
-          }, 300);
-        };
+          e.preventDefault();
+          e.stopPropagation();
+          openLightbox(target.src, target.alt);
+        }
+      });
 
-        document.body.addEventListener('click', (e) => {
-          const target = e.target;
-          
-          if (target.tagName === 'IMG') {
-            // Ignore logo, explicitly ignored images, or images inside functional links outside of prose
-            if (
-              target.closest('header') || 
-              (target.closest('a') && !target.closest('.prose')) ||
-              target.hasAttribute('data-no-lightbox')
-            ) {
-              return;
-            }
-            
-            e.preventDefault();
-            e.stopPropagation(); // prevent other click handlers if necessary
-            openLightbox(target.src, target.alt);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen) closeLightbox();
+      });
+
+      // Global Reveal Observer (create once)
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-12');
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            observer.unobserve(entry.target);
           }
         });
+      }, observerOptions);
 
-        closeBtn.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-          if (e.target === lightbox) closeLightbox();
-        });
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && isOpen) closeLightbox();
-        });
+      // Event listener for DOM elements that are replaced on page transitions
+      document.addEventListener('astro:page-load', () => {
+        // Re-query lightbox elements on page load
+        lightbox = document.getElementById('global-lightbox');
+        lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('lightbox-close');
+        
+        if (closeBtn) {
+          closeBtn.addEventListener('click', closeLightbox);
+        }
+        
+        if (lightbox) {
+          lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+          });
+        }
 
         window.openLightbox = openLightbox;
-      });
-      
-      // Global Reveal Animation Observer
-      document.addEventListener('astro:page-load', () => {
-        const observerOptions = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.15
-        };
 
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.remove('opacity-0', 'translate-y-12');
-              entry.target.classList.add('opacity-100', 'translate-y-0');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
+        // Reveal animation setup
         const sections = document.querySelectorAll('.project-section, .reveal-on-scroll');
         sections.forEach(section => {
           if (section.classList.contains('reveal-on-scroll')) {
@@ -252,15 +262,12 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
           }
           observer.observe(section);
         });
-      });
 
-      // Prevent double load on home page when clicking category links
-      document.addEventListener('astro:page-load', () => {
+        // Prevent double load on home page when clicking category links
         const navLinks = document.querySelectorAll('header a');
         navLinks.forEach(link => {
           link.addEventListener('click', (e) => {
             const url = new URL(link.href);
-            // If we are currently on the home page and clicking a filter link
             if (window.location.pathname === '/' && url.pathname === '/') {
               if (url.searchParams.has('filter')) {
                 e.preventDefault();
@@ -276,10 +283,8 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
                   target.scrollIntoView({ behavior: 'smooth' });
                 }
                 
-                // Ensure the URL updates to include the hash
                 window.history.pushState({}, '', link.href);
               } else if (!url.hash && !url.search) {
-                // Clicking the main title / logo when already on home page
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.history.pushState({}, '', '/');
