@@ -1,7 +1,7 @@
 ---
 title: "Neun"
 description: "Outsmart the grid in this roguelike puzzle game!"
-coverImage: "../../assets/projects/neun_icon.png"
+coverImage: "../../assets/projects/neun_icon.jpg"
 span: 1
 featured: true
 category: "Apps"
@@ -19,9 +19,9 @@ that blends tactical tile-matching with thrilling roguelike mechanics. Every
 swipe matters, and no two runs are ever the same.
 
 <div class="not-prose flex flex-row justify-center gap-4 my-12">
-  <img src="/projects/neun/Bild1.png" alt="Core Loop" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
-  <img src="/projects/neun/Bild2.png" alt="Tactical Combat" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
-  <img src="/projects/neun/Bild3.png" alt="Synthetic Strategist" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/neun/Bild1.jpg" alt="Core Loop" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/neun/Bild2.jpg" alt="Tactical Combat" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/neun/Bild3.jpg" alt="Synthetic Strategist" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
 </div>
 
 ## The Core Loop

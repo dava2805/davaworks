@@ -1,7 +1,7 @@
 ---
 title: "Mind the Track!"
 description: "Dash forward, leave your trail, and dodge tricky enemies!"
-coverImage: "../../assets/projects/mindthetrack/logo.png"
+coverImage: "../../assets/projects/mindthetrack/logo.jpg"
 span: 1
 featured: true
 category: "Apps"
@@ -21,9 +21,9 @@ enemies and powerful bosses will test your reflexes and will try to ruin your
 run.
 
 <div class="not-prose flex flex-row justify-center gap-4 my-12">
-  <img src="/projects/mindthetrack/screenshot1.PNG" alt="Mind the Track! Gameplay" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
-  <img src="/projects/mindthetrack/screeenshot2.PNG" alt="Mind the Track! Action" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
-  <img src="/projects/mindthetrack/screenshot3.PNG" alt="Mind the Track! Leaderboard" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/mindthetrack/screenshot1.jpg" alt="Mind the Track! Gameplay" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/mindthetrack/screeenshot2.jpg" alt="Mind the Track! Action" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/mindthetrack/screenshot3.jpg" alt="Mind the Track! Leaderboard" class="w-1/3 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
 </div>
 
 ## How to Play

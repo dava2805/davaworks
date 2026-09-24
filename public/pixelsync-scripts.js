@@ -203,8 +203,8 @@
 
 function initPixelSyncSlider() {
   const images = [
-    'Bild1.png', 'Bild2.png', 'Bild3.png', 'Bild5.png',
-    'Bild6.png', 'Bild7.png', 'Bild8.png', 'Bild20_engine.PNG', 'Bild21_widget.PNG'
+    'Bild1.jpg', 'Bild2.jpg', 'Bild3.jpg', 'Bild5.jpg',
+    'Bild6.jpg', 'Bild7.jpg', 'Bild8.jpg', 'Bild20_engine.jpg', 'Bild21_widget.jpg'
   ];
 
   const container = document.getElementById('pxs-slides');

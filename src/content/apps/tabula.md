@@ -1,7 +1,7 @@
 ---
 title: "Tabula"
 description: "A minimalist execution engine that forces discipline and eliminates procrastination."
-coverImage: "../../assets/projects/tabula_icon.002.png"
+coverImage: "../../assets/projects/tabula_icon.002.jpg"
 span: 2
 featured: true
 category: "Apps"
@@ -25,10 +25,10 @@ real-world calendar, and automatically burn whatever you don't finish. Every
 single day is a fresh start.
 
 <div class="not-prose flex flex-row justify-center gap-4 my-12">
-  <img src="/projects/tabula/Bild1.png" alt="Tabula Screenshot 1" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
-  <img src="/projects/tabula/Bild2.png" alt="Tabula Screenshot 2" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
-  <img src="/projects/tabula/Bild3.png" alt="Tabula Screenshot 3" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
-  <img src="/projects/tabula/Bild4.png" alt="Tabula Screenshot 4" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/tabula/Bild1.jpg" alt="Tabula Screenshot 1" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/tabula/Bild2.jpg" alt="Tabula Screenshot 2" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/tabula/Bild3.jpg" alt="Tabula Screenshot 3" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
+  <img src="/projects/tabula/Bild4.jpg" alt="Tabula Screenshot 4" class="w-1/4 max-w-[200px] rounded-xl shadow-lg border border-zinc-800/50 object-contain hover:scale-105 transition-transform duration-300" />
 </div>
 
 ## Core Features
@@ -58,7 +58,7 @@ single day is a fresh start.
 
 **Never lose track of what matters.**
 
-![Tabula Always on Top Mac App](../../assets/projects/tabula/mac_always_on_top.png)
+![Tabula Always on Top Mac App](../../assets/projects/tabula/mac_always_on_top.jpg)
 
 ## Privacy & Ownership First
 
