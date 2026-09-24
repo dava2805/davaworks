@@ -58,7 +58,7 @@ single day is a fresh start.
 
 **Never lose track of what matters.**
 
-![Tabula Always on Top Mac App](../../assets/projects/tabula/mac_always_on_top.jpg)
+![Tabula Always on Top Mac App](../../assets/projects/tabula/mac_always_on_top.png)
 
 ## Privacy & Ownership First
 
