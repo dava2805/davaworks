@@ -77,4 +77,4 @@ your data.
 
 ---
 
-[Privacy Policy](/legal/tabula-privacy) • [Terms of Service](/legal/tabula-tos)
+[Privacy Policy](/legal/tabula-privacy) • [Terms of Service](/legal/tabula-tos) • [Data Deletion](/legal/tabula-deletion)
