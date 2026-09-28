@@ -5,21 +5,23 @@ title: "Legal Notice / Impressum"
 
 ## Information in accordance with § 5 TMG
 
-David Culjak  
-Forststr. 102  
-70193 Stuttgart  
+davaworks — David Culjak  
+c/o Online-Impressum 2174  
+Europaring 90  
+53757 Sankt Augustin  
 Germany  
 
 ## Contact
 
-Phone: +49 176 84889388  
+Phone: +491633854732  
 Email: mindthetrack25@gmail.com  
 
 ## Responsible for Content according to § 55 Abs. 2 RStV
 
-David Culjak  
-Forststr. 102  
-70193 Stuttgart  
+davaworks — David Culjak  
+c/o Online-Impressum 2174  
+Europaring 90  
+53757 Sankt Augustin  
 
 ## EU Dispute Resolution
 
