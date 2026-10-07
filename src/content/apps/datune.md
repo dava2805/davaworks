@@ -82,4 +82,4 @@ shifts to match your vibe.
 
 ---
 
-[Privacy Policy](/legal/datune-privacy)
+[Privacy Policy](/legal/datune-privacy/)

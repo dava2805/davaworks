@@ -40,4 +40,4 @@ your mark?
 
 ---
 
-[Privacy Policy](/legal/mindthetrack-privacy)
+[Privacy Policy](/legal/mindthetrack-privacy/)

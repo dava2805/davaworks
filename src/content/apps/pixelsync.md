@@ -113,5 +113,5 @@ Download PixelSync today and start building your next pixel masterpiece.
 
 ---
 
-[Privacy Policy](/legal/pixelsync-privacy) •
-[Terms of Service](/legal/pixelsync-tos)
+[Privacy Policy](/legal/pixelsync-privacy/) •
+[Terms of Service](/legal/pixelsync-tos/)

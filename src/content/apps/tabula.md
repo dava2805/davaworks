@@ -10,7 +10,6 @@ playStoreLink: "#"
 subcategory: "PRODUCTIVITY"
 ---
 
-
 **Stop Planning. Start Executing.**
 
 Most to-do lists are digital graveyards for things you will never do. Tabula is
@@ -77,4 +76,5 @@ your data.
 
 ---
 
-[Privacy Policy](/legal/tabula-privacy) • [Terms of Service](/legal/tabula-tos) • [Data Deletion](/legal/tabula-deletion)
+[Privacy Policy](/legal/tabula-privacy/) • [Terms of Service](/legal/tabula-tos/)
+• [Data Deletion](/legal/tabula-deletion/)

@@ -55,7 +55,7 @@ const personSchema = JSON.stringify({
   <div id="projects" class="scroll-mt-32 flex flex-col gap-32 md:gap-48 w-full max-w-6xl mx-auto px-4">
     {allProjects.map((project, index) => {
       const collectionName = project.collection;
-      const href = `/${collectionName}/${project.id}`;
+      const href = `/${collectionName}/${project.id}/`;
       const isEven = index % 2 === 0;
 
       return (

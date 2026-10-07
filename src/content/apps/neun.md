@@ -73,4 +73,4 @@ shimmering Golden Prestige Aura to flex during your runs.
 
 ---
 
-[Privacy Policy](/legal/neun-privacy)
+[Privacy Policy](/legal/neun-privacy/)
