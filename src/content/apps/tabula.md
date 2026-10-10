@@ -37,9 +37,12 @@ single day is a fresh start.
 - **The Daily Wipe:** Every 24 hours at your chosen reset time, your slate is
   wiped clean. No rollovers. No guilt-tripping notifications. You either
   execute, or you let it burn.
-- **Kanban Project Boards:** For larger goals, build your backlog on Kanban
-  boards. When you are finally ready to execute, push a card directly to your
-  daily slate.
+- **THE TRI-STATE ENGINE:** For larger goals that take time, Tabula features a
+  revolutionary tri-state architecture. View your exact same dataset precisely
+  how your brain works at any given moment: organize categorically on a linear
+  Kanban board, brainstorm spatially on a freeform Canvas, or schedule
+  temporally on a Gantt Timeline. When you are finally ready to execute, push
+  a card directly from any view onto your daily slate.
 - **Peer-to-Peer Kanban Sharing:** Stop working in a silo. Share your project
   boards with others by generating a secure, open link directly from your Google
   Drive. Because it is decentralized, your shared projects remain in your
@@ -76,5 +79,6 @@ your data.
 
 ---
 
-[Privacy Policy](/legal/tabula-privacy/) • [Terms of Service](/legal/tabula-tos/)
-• [Data Deletion](/legal/tabula-deletion/)
+[Privacy Policy](/legal/tabula-privacy/) •
+[Terms of Service](/legal/tabula-tos/) •
+[Data Deletion](/legal/tabula-deletion/)
