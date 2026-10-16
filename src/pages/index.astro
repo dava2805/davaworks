@@ -12,8 +12,8 @@ const music = await getCollection('music');
 
 const rawProjects = [...apps, ...hardware, ...music].filter(p => p.data.featured);
 
-// Custom sort: datune, pixelsync, tabula first
-const priorityOrder = ['datune', 'pixelsync', 'tabula'];
+// Custom sort: datune, pixelsync, tabula, klang, holdthatgate, mindthetrack
+const priorityOrder = ['datune', 'pixelsync', 'tabula', 'klang', 'holdthatgate', 'mindthetrack'];
 const allProjects = rawProjects.sort((a, b) => {
   const indexA = priorityOrder.indexOf(a.id);
   const indexB = priorityOrder.indexOf(b.id);
