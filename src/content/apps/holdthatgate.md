@@ -15,7 +15,7 @@ subcategory: "GAME"
     loop 
     playsinline 
     class="w-full aspect-video md:aspect-[1902/1084] object-cover"
-    poster="/projects/holdthatgate/screenshot_htg.png"
+    poster="/projects/holdthatgate/video_poster_htg.png"
   >
     <source src="/projects/holdthatgate/prototypevideo_htg.mp4" type="video/mp4" />
     Your browser does not support the video tag.
