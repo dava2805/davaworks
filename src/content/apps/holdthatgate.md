@@ -1,6 +1,6 @@
 ---
 title: "Hold That Gate!"
-description: "Helm’s Deep meets bowling in a physics-driven siege defense."
+description: "One bridge. One gate. Hold it — or watch the horde pour through."
 coverImage: "../../assets/projects/holdthatgate/cover.png"
 span: 2
 featured: true
@@ -22,11 +22,11 @@ subcategory: "GAME"
   </video>
   <div class="absolute top-3 left-3 md:top-4 md:left-4 z-10 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-mono uppercase tracking-wider text-zinc-300 pointer-events-none flex items-center gap-2">
     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-    Early Prototype Gameplay
+    In Development
   </div>
 </div>
 
-**Hold That Gate! is a fast-paced, physics-driven castle defense game about holding a single deadly bridge against relentless monster hordes. Command your ramparts, trigger devastating elemental trap combos, and risk opening your portcullis to unleash knight counter-attacks before heavy siege engines breach your kingdom.**
+**The horde is coming over the bridge. Behind you: your gate, your walls, your kingdom. In front of you: hundreds of orcs, armoured knights, battering rams — and something with wings. Hold That Gate! is a fast, punchy castle defense game where every battle comes down to one bridge and one question: dare you open the gate?**
 
 <div class="not-prose flex flex-wrap gap-4 my-8">
   <a href="#" onclick="alert('Coming soon!'); return false;" class="inline-flex items-center gap-2.5 px-6 py-3.5 bg-white text-black font-bold rounded-full shadow-lg shadow-white/10 hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all duration-300">
@@ -39,25 +39,28 @@ subcategory: "GAME"
   </a>
 </div>
 
-## One Bridge. One Gate. Total Chaos.
+## One Bridge. One Gate. No Way Around.
 
-Forget building sprawling mazes or staring at spreadsheets. Here, all the tension is concentrated into a single, narrow stone bridge over a bottomless chasm.
+No mazes, no endless maps. Every fight happens on a single stone bridge over a deep gorge. The horde charges from the far side, your fortress stands at the near end, and everything in between is yours to defend.
 
-From the North, the monster horde charges. At the South, your fortress stands. Between them lies your lethal gauntlet. Every boulder launched, every barrel of boiling oil poured, and every split-second decision at the gatehouse determines whether your citadel stands or falls.
+Easy to pick up, hard to master. A quick battle fits into a coffee break — but the last wave will make you lean in.
 
-## How You Defend the Realm
+## How You Hold the Line
 
-### 🎳 Kinetic "Bowling-Alley" Physics
-Monsters don’t just lose health bars—they get launched. Drop giant spiked logs down the bridge, hurl massive catapult boulders, and watch dozens of goblins, armored orcs, and charging brutes go tumbling over the railings into the abyss.
+### 🏹 Man the Walls
+Place archers, battle mages and catapults on your walls and towers between waves. Every defender can be trained into a different role — rapid-fire marksmen or volley archers, chain-lightning storm mages, catapults that rain stones over the whole bridge. Same wall, very different fortress.
 
-### 🔥 Explosive Elemental Combos
-Turn the bridge into a furnace. Drench the stone deck in sticky tar and let your archers ignite it with fire arrows, or use arcane mages to freeze charging enemies right in the path of a rolling log.
+### 🚪 The Gate Is Your Biggest Gamble
+Keep it shut and you're safe — for now. Open it and your knights hold the gateway, every kill pays extra gold, and the horde rushes in… right under your portcullis. Wait for them to crowd the gateway, slam the gate shut and **crush** them. Get the timing wrong and they're inside your walls.
 
-### ⚔️ The Gatehouse Dilemma (High Risk, High Reward)
-Your iron portcullis is your shield. Keep it shut to stay safe, or pull the lever at your own peril to send your elite knights charging onto the bridge. Time it right to plug the chokepoint—or panic and accidentally flatten your own troops with friendly fire!
+### ⚔️ Send Out the Knights
+Archers in the back you can't reach? Open up and send your knights charging onto the bridge. Cut them down — and call your knights back before they're surrounded.
 
-### 🪵 Crush the Siege Engines
-It’s not just foot soldiers. The horde brings armored timber Battering Rams and towering bosses. Break their momentum before that iron ram slams into your gate!
+### 🔥 Pour, Roll, Burn
+Roll a giant log down the bridge to flatten the front of the horde. Pour boiling pitch at the gate — and watch a single fire arrow set the whole pool ablaze. Scatter ice caltrops, fire every catapult at once. The best moments come from combining them.
+
+### 🃏 Pick Your Power Mid-Battle
+Between waves you choose one of three upgrade cards: twin arrows, wider blasts, stones that shatter into splinters, frost that slows the horde… Every run builds a slightly different fortress.
 
 <div class="not-prose my-12 overflow-hidden rounded-2xl md:rounded-3xl border border-zinc-800 shadow-2xl group">
   <img 
@@ -67,16 +70,26 @@ It’s not just foot soldiers. The horde brings armored timber Battering Rams an
   />
 </div>
 
-## From the Ramparts to the War Table
+## Enemies That Make You Think
 
-When the final monster falls and the battle horn blows, the camera smoothly glides down behind your walls into the peaceful citadel courtyard.
+The horde doesn't just get bigger — it gets smarter. Armoured knights shrug off arrows. Shield bearers protect everyone behind them. Banner bearers drive the whole army into a frenzy. Battering rams go straight for your gate. And at the end of every kingdom waits a boss that tests everything you've learned.
 
-- **🗺️ The Stone War Table:** Gather around a weathered stone table to plot your campaign on a tactile parchment map. Rescue besieged citadels across the realm—from windswept mountain viaducts to slippery frost fjords and fiery sulfur canyons.
-- **🔨 The Trophy Forge:** Drag the remains of defeated bosses back to your courtyard blacksmith. Turn giant beetle horns into spiked gate rams, or brew hydra venom into armor-melting acid traps for the next siege.
+## A Realm of Kingdoms
+
+- **🏔️ Highmarch** — an alpine citadel above a glacier river, waterfalls tumbling into the gorge. Learn the art of defense here… until the dragon comes.
+- **☀️ Sunspire** — a desert fortress of fire. Scorpion riders, sand swarms, burrowing drills — and a sandworm that only surfaces to strike.
+- **❄️ And more on the horizon** — frozen fortresses, caves with swinging rope bridges, coastal gates against the tide.
+
+## Between the Battles
+
+- **🗺️ The War Table:** Plan your campaign on a parchment map and pick which gate to defend next.
+- **⭐ Earn Every Star:** Win, keep your gate standing, and master each level's special challenge — *never open the gate*, *win with only three defenders*, *crush four enemies with the portcullis*…
+- **🔨 The Forge:** Spend your stars on new roles for your troops, new upgrade cards and new versions of your weapons — like a log covered in iron spikes.
+- **🏆 Trophies:** Every defeated boss leaves a trophy that changes the rules of every battle after it.
 
 ## Follow the Siege (Built in Public!)
 
-Hold That Gate! is being developed openly alongside the community. Every new trap, physics test, and catastrophic friendly-fire fail is shared weekly. Come vote on new weapons, watch the prototype evolve, and help shape the defense!
+Hold That Gate! is made by a solo developer, out in the open. New enemies, new kingdoms, epic fails and big wins are shared along the way. Come say hi, watch the game grow and help shape it — a free demo on Steam is on its way.
 
 <div class="not-prose flex flex-wrap gap-4 my-8">
   <a href="https://www.youtube.com/@DavaWorks" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-5 py-3 bg-zinc-900 text-white font-medium rounded-full border border-zinc-800 hover:border-red-500/50 hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all duration-300">
